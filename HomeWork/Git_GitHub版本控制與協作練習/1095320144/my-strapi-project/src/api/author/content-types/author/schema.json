@@ -34,6 +34,9 @@
       "target": "api::article.article",
       "mappedBy": "author"
     },
+    "No": {
+      "type": "string"
+    },
     "Description": {
       "type": "string"
     }
