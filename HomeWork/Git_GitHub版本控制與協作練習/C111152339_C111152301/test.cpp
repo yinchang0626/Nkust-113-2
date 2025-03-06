@@ -1,6 +1,8 @@
 #include <stdio.h> 
 int main(){
-	printf("Hello World");
-	printf("HI!! SEKAI");
-	printf("Goodbye SEKAI");
+	while (1)
+	{
+		printf("HI!! SEKAI");
+		printf("Goodbye SEKAI");
+	}
 } 
