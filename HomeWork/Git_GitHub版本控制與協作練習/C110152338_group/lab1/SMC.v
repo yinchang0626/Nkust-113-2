@@ -48,7 +48,7 @@ wire [9:0] ans;
     assign nn1 = mode[1] ? sort_0 : sort_3 ;
     assign nn2 = mode[1] ? sort_1 : sort_4 ;
     assign nn3 = mode[1] ? sort_2 : sort_5 ;
-    aassign ans = mode[0] ? (3 * nn1 + 4 * nn2 + 5 * nn3) / 3 : 
+    assign ans = mode[0] ? (3 * nn1 + 4 * nn2 + 5 * nn3) / 3 : 
                           (nn1 + nn2 + nn3) / 3;
 
     assign out_n = mode[0] ? ans[9:2] : ans[7:0];
