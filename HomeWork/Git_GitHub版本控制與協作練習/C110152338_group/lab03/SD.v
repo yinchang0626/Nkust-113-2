@@ -269,11 +269,36 @@ assign CUBE6 = CUBE[6];
 assign CUBE7 = CUBE[7];
 assign CUBE8 = CUBE[8];
 
+reg [9:0] L_to_R_stack[8:0];
+reg [9:0] T_to_B_stack[8:0];
+reg [9:0] CUBE_stack[8:0];
 
+wire [9:0] stack_binary[14:0];
 integer i;
+
+// always@(*)begin
+//     for (i = 0; i < 14; i = i+1)begin
+//         L_to_R_stack[stack[i][11:8]] = L_to_R[stack[i][11:8]] | stack_binary[i];
+//         T_to_B_stack[stack[i][7:4]] = T_to_B[stack[i][7:4]]  | stack_binary[i];
+//         CUBE_stack[(stack[i][11:8] / 3) * 3 + stack[i][7:4] / 3] = T_to_B[(stack[i][11:8] / 3) * 3 + stack[i][7:4] / 3]  | stack_binary[i];
+//     end
+
+// end
+
+
+wire [3:0] stack_y_pre1;
+wire [3:0] stack_x_pre1;
+wire [3:0] blank_cnt_minus1;
+wire [3:0] stack_num_pre1;
+
+assign blank_cnt_minus1 = (blank_cnt > 4'd0) ? blank_cnt - 4'd1 : blank_cnt;
+assign stack_num_pre1 = stack[blank_cnt_minus1][3:0];
 
 assign stack_y = stack[blank_cnt][11:8];
 assign stack_x = stack[blank_cnt][7:4];
+assign stack_y_pre1 =stack[blank_cnt_minus1][11:8];
+assign stack_x_pre1 =stack[blank_cnt_minus1][7:4];
+
 assign stack_num = stack[blank_cnt][3:0];
 assign stack_num_plus1 = stack_num + 4'd1;
 assign three_or_one = L_to_R[stack_y] | T_to_B[stack_x] | CUBE[(stack_y / 3) * 3 + stack_x / 3];
@@ -282,6 +307,22 @@ assign cal_point = three_or_one ^ x_binary;
 
 int_to_binary u1(in_reg, input_binary);
 int_to_binary u2(x, x_binary);
+int_to_binary u3(stack[0][3:0], stack_binary[0]);
+int_to_binary u4(stack[1][3:0], stack_binary[1]);
+int_to_binary u5(stack[2][3:0], stack_binary[2]);
+int_to_binary u6(stack[3][3:0], stack_binary[3]);
+int_to_binary u7(stack[4][3:0], stack_binary[4]);
+int_to_binary u8(stack[5][3:0], stack_binary[5]);
+int_to_binary u9(stack[6][3:0], stack_binary[6]);
+int_to_binary u10(stack[7][3:0], stack_binary[7]);
+int_to_binary u11(stack[8][3:0], stack_binary[8]);
+int_to_binary u12(stack[9][3:0], stack_binary[9]);
+int_to_binary u13(stack[10][3:0], stack_binary[10]);
+int_to_binary u14(stack[11][3:0], stack_binary[11]);
+int_to_binary u15(stack[12][3:0], stack_binary[12]);
+int_to_binary u16(stack[13][3:0], stack_binary[13]);
+int_to_binary u17(stack[14][3:0], stack_binary[14]);
+
 
 //======<FSM STATE>========//
 parameter IDLE      = 4'd0;     // waiting for the read valid signal
@@ -315,11 +356,11 @@ always @(*) begin
         CAL:        nstate = (cal_point > three_or_one) ? RIGHT :
                              (blank_cnt == 4'd0 && x >= 4'd10) ? WRONG :
                              (x == 4'd9 || stack_num >= 4'd9) ? POP : CAL;
-        RIGHT:      nstate = (blank_cnt == 4'd15) ? GOOD : PUSH;
-        POP:        nstate = PUSH;
+        RIGHT:      nstate = (blank_cnt == 4'd14) ? GOOD : PUSH;
+        POP:        nstate = (x == 4'd9 || stack_num >= 4'd9) ? POP : PUSH;
         WRONG:      nstate = END;
-        GOOD:       nstate = (y == 4'd9) ? END : GOOD;
-        END:        nstate = END;
+        GOOD:       nstate = (y == 4'd14) ? END : GOOD;
+        END:        nstate = IDLE;
         default: nstate = IDLE;
     endcase
 end
@@ -333,6 +374,9 @@ always@(posedge clk, negedge rst_n)begin
     end
     else begin
         case(state)
+            IDLE:begin
+                in_reg <= in;
+            end
             READ:begin
                 if (x == 4'd8)begin
                     x <= 4'd0;
@@ -358,6 +402,11 @@ always@(posedge clk, negedge rst_n)begin
             GOOD:begin
                 y <= y + 4'd1;
             end
+            END:begin
+                x <= 4'd0;
+                y <= 4'd0;
+                in_reg <= 4'd0;
+            end
         endcase
     end
 end
@@ -379,14 +428,26 @@ always@(posedge clk, negedge rst_n)begin
                 CUBE[(y / 3) * 3 + x / 3] <= input_binary | CUBE[(y / 3) * 3 + x / 3];
             end
             RIGHT:begin
-                L_to_R[stack_y][stack_num] <= 1'b1;
-                T_to_B[stack_x][stack_num] <= 1'b1;
-                CUBE[(stack_y / 3) * 3 + stack_x / 3][stack_num] <= 1'b1;
+                L_to_R[stack_y][x] <= 1'b1;
+                T_to_B[stack_x][x] <= 1'b1;
+                CUBE[(stack_y / 3) * 3 + stack_x / 3][x] <= 1'b1;
             end
-            POP:begin
+            PUSH:begin
                 L_to_R[stack_y][stack_num] <= 1'b0;
                 T_to_B[stack_x][stack_num] <= 1'b0;
                 CUBE[(stack_y / 3) * 3 + stack_x / 3][stack_num] <= 1'b0;
+            end
+            POP:begin
+                L_to_R[stack_y_pre1][stack_num_pre1] <= (x == 4'd9) ? L_to_R[stack_y_pre1][stack_num_pre1] : 1'b0;
+                T_to_B[stack_x_pre1][stack_num_pre1] <= (x == 4'd9) ? T_to_B[stack_x_pre1][stack_num_pre1] : 1'b0;
+                CUBE[(stack_y_pre1 / 3) * 3 + stack_x_pre1 / 3][stack_num_pre1] <= (x == 4'd9) ? CUBE[(stack_y_pre1 / 3) * 3 + stack_x_pre1 / 3][stack_num_pre1] : 1'b0;
+            end
+            END:begin
+                for (i = 0; i <= 8; i = i + 1) begin
+                    L_to_R[i] <= 10'd0;
+                    T_to_B[i] <= 10'd0;
+                    CUBE[i] <= 10'd0;
+                end
             end
         endcase
     end
@@ -415,11 +476,20 @@ always@(posedge clk, negedge rst_n)begin
             R_DONE:begin
                 blank_cnt <= 4'd0;
             end
-            PUSH:begin
+            // PUSH:begin
+            //     blank_cnt <= (blank_cnt < 4'd14) ? blank_cnt + 4'd1 : blank_cnt;
+            // end
+            RIGHT:begin
                 blank_cnt <= (blank_cnt < 4'd14) ? blank_cnt + 4'd1 : blank_cnt;
             end
             POP:begin
                 blank_cnt <= (blank_cnt > 4'd0) ? blank_cnt - 4'd1 : blank_cnt;
+            end
+            END:begin
+                for (i = 0; i <= 14; i = i + 1) begin
+                    blank[i] <= 8'd0;
+                end
+                blank_cnt <= 4'd0;
             end
         endcase
     end
@@ -434,13 +504,21 @@ always@(posedge clk, negedge rst_n)begin
     else begin
         case(state)
             PUSH:begin
-                stack[(blank_cnt + 4'd1)] <= {blank[(blank_cnt + 4'd1)], stack_num_plus1};
+                stack[blank_cnt] <= {blank[blank_cnt], stack[blank_cnt][3:0]};
+            end
+            RIGHT:begin
+                stack[blank_cnt] <= {blank[blank_cnt], x};
             end
             CAL:begin
                 stack[blank_cnt] <= (cal_point > three_or_one) ? {blank[blank_cnt], x} : stack[blank_cnt];
             end
             POP:begin
                 stack[blank_cnt] <= 12'd0;
+            end
+            END:begin
+                for (i = 0; i <= 14; i = i + 1) begin
+                    stack[i] <= 12'd0;
+                end
             end
         endcase
     end
