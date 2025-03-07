@@ -18,6 +18,10 @@ always @(negedge clk,posedge rst)begin
 		d<=8'b0000_0000;			//remainder
 		run_time<=4'b0000;		//time reset
 >>>>>>> origin/feat-5j5fuzc
+		
+		c<=8'b0000_0000;			//quotient
+		d<=8'b0000_0000;			//remainder
+		run_time<=4'b0000;		//time reset
 	end
 	else begin
 		if(run_time<=<=0)begin
