@@ -1,7 +1,8 @@
+//conflic
 module DIV(clk,rst,a,b,c,d);
 input clk,rst;
 input [7:0] a,b;
-output reg [7:0] c,d;
+output reg [8:0] c,d;
 
 reg [3:0] run_time;
 reg [7:0] data_c,data_d;
