@@ -10,7 +10,7 @@ always @(negedge clk,posedge rst)begin
 	if(rst)begin
 		c=8'b0000_0000;			//quotient
 		d=8'b0000_0000;			//remainder
-		run_time<=4'b0000;		//time reset
+		run_time=4'b0000;		//time reset
 	end
 	else begin
 		if(run_time==0)begin
