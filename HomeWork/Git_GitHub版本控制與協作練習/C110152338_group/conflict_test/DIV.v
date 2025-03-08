@@ -1,55 +1,80 @@
-//conflic
-module DIV(clk,rst,a,b,c,d);
-input clk,rst;
-input [7:0] a,b;
-output reg [8:0] c,d;
+module DIV(clk, reset, num, den, out, valid);
+	parameter SIZE = 8'd96;
+	parameter DEC_SIZE = 8'd32;
+	parameter LOG2 = 4'd10;
+	input clk;
+	input reset;
+	input [SIZE - 1:0] num, den;
+	output [SIZE - 1:0] out;
+	output valid;
 
-reg [3:0] run_time;
-reg [7:0] data_c,data_d;
+	reg [SIZE - 1:0] quo;
+	reg [SIZE - 1:0] rem;
+	wire [SIZE - 1:0] minus;
+	reg [LOG2 - 1:0] cnt;
 
-always @(negedge clk,posedge rst)begin
-	if(rst)begin
-<<<<<<< HEAD
-		c=8'b0000_0000;			//quotient
-		d=8'b0000_0000;			//remainder
-		run_time=4'b0000;		//time reset
-=======
-		c<=8'b0000_0000;			//quotient
-		d<=8'b0000_0000;			//remainder
-		run_time<=4'b0000;		//time reset
->>>>>>> origin/feat-5j5fuzc
-		
-		c<=8'b0000_0000;			//quotient
-		d<=8'b0000_0000;			//remainder
-		run_time<=4'b0000;		//time reset
-	end
-	else begin
-		if(run_time<=<=0)begin
-				data_c<=a;					//put a in quotient
-				data_d<=8'b0000_0000;	//clear remainder
-				run_time<=run_time+1'b1;
-		end
-		else if(run_time<=9)begin
-			if(b>data_d)begin
-				{data_d,data_c}<=({data_d,data_c}<<1);
-			end
-			else begin
-				data_d<=(data_d-b);
-				{data_d,data_c}<=({data_d,data_c}<<1);
-				data_c[0]<=1'b1;
-			end
-			run_time<=run_time+1'b1;
-		end
-		else if(run_time<=<=10)begin
-			data_d<=data_d>>1;
-			c<=data_c;
-			d<=data_d;
-			run_time<=run_time+1'b1;
+	reg [1:0] state, nstate;
+	parameter IDLE = 2'd0;
+	parameter RES  = 2'd1;
+	parameter RUN  = 2'd2;
+	parameter DONE = 2'd3;
+	
+	assign valid = (state == DONE) ? 1'b1 : 1'b0;
+	assign minus = rem - den;
+	assign out = quo;
+	
+	always@(posedge clk, posedge reset)begin
+		if(reset)begin
+			state <= IDLE;
 		end
 		else begin
-			run_time<=4'b0000;
+			state <= nstate;
 		end
 	end
-end
+
+	always@(*)begin
+		case(state)
+			IDLE: nstate = RES;
+			RES:  nstate = RUN;
+			RUN:  nstate = (cnt == (SIZE + DEC_SIZE)) ? DONE : RUN;
+			DONE: nstate = DONE;
+			default: nstate = IDLE;
+		endcase
+	end
+
+	always@(posedge clk,posedge reset)begin
+		if(reset)begin
+			quo <= 0;
+			rem <= 0;
+		end
+		else begin
+			case(state)
+				RES : begin
+					quo <= num;
+					rem <= 0;
+				end
+				RUN:begin
+					if(den > rem)begin
+						{rem, quo} <= {rem, quo, 1'b0};
+					end
+					else begin
+						{rem, quo} <= {minus, quo, 1'b1};
+					end
+				end
+			endcase
+		end
+	end
+	
+	always@(posedge clk, posedge reset)begin
+		if(reset)begin
+			cnt <= 0;
+		end
+		else begin
+			case(state)
+				RUN:	cnt <= cnt + 1;
+				default: cnt <= 0;
+			endcase
+		end
+	end
 
 endmodule 
