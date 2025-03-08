@@ -272,18 +272,15 @@ assign CUBE8 = CUBE[8];
 reg [9:0] L_to_R_stack[8:0];
 reg [9:0] T_to_B_stack[8:0];
 reg [9:0] CUBE_stack[8:0];
+reg wrong_graph;
+wire [9:0] L_to_R_xor;
+wire [9:0] T_to_B_xor;
+wire [9:0] CUBE_xor;
+
 
 wire [9:0] stack_binary[14:0];
 integer i;
 
-// always@(*)begin
-//     for (i = 0; i < 14; i = i+1)begin
-//         L_to_R_stack[stack[i][11:8]] = L_to_R[stack[i][11:8]] | stack_binary[i];
-//         T_to_B_stack[stack[i][7:4]] = T_to_B[stack[i][7:4]]  | stack_binary[i];
-//         CUBE_stack[(stack[i][11:8] / 3) * 3 + stack[i][7:4] / 3] = T_to_B[(stack[i][11:8] / 3) * 3 + stack[i][7:4] / 3]  | stack_binary[i];
-//     end
-
-// end
 
 
 wire [3:0] stack_y_pre1;
@@ -291,11 +288,17 @@ wire [3:0] stack_x_pre1;
 wire [3:0] blank_cnt_minus1;
 wire [3:0] stack_num_pre1;
 
+assign L_to_R_xor = L_to_R[y] ^ input_binary;
+assign T_to_B_xor = T_to_B[x] ^ input_binary;
+assign CUBE_xor   = CUBE[(y / 3) * 3 + x / 3] ^ input_binary;
+
 assign blank_cnt_minus1 = (blank_cnt > 4'd0) ? blank_cnt - 4'd1 : blank_cnt;
 assign stack_num_pre1 = stack[blank_cnt_minus1][3:0];
 
-assign stack_y = stack[blank_cnt][11:8];
-assign stack_x = stack[blank_cnt][7:4];
+// assign stack_y = stack[blank_cnt][11:8];
+// assign stack_x = stack[blank_cnt][7:4];
+assign stack_y = blank[blank_cnt][7:4];
+assign stack_x = blank[blank_cnt][3:0];
 assign stack_y_pre1 =stack[blank_cnt_minus1][11:8];
 assign stack_x_pre1 =stack[blank_cnt_minus1][7:4];
 
@@ -351,13 +354,14 @@ always @(*) begin
     case(state)
         IDLE:       nstate = (in_valid) ? READ: IDLE;
         READ:       nstate = (y == 4'd9 && x == 4'd0) ? R_DONE : READ;
-        R_DONE:     nstate = CAL;
+        R_DONE:     nstate = (wrong_graph == 1'b1) ? WRONG : CAL;
         PUSH:       nstate = CAL;
         CAL:        nstate = (cal_point > three_or_one) ? RIGHT :
                              (blank_cnt == 4'd0 && x >= 4'd10) ? WRONG :
                              (x == 4'd9 || stack_num >= 4'd9) ? POP : CAL;
         RIGHT:      nstate = (blank_cnt == 4'd14) ? GOOD : PUSH;
-        POP:        nstate = (x == 4'd9 || stack_num >= 4'd9) ? POP : PUSH;
+        POP:        nstate = (blank_cnt == 4'd0) ? WRONG :
+                                     (x == 4'd9) ? POP : PUSH;
         WRONG:      nstate = END;
         GOOD:       nstate = (y == 4'd14) ? END : GOOD;
         END:        nstate = IDLE;
@@ -418,11 +422,15 @@ always@(posedge clk, negedge rst_n)begin
             L_to_R[i] <= 10'd0;
             T_to_B[i] <= 10'd0;
             CUBE[i] <= 10'd0;
+            wrong_graph <= 1'b0;
         end
     end
     else begin
         case(state)
             READ:begin
+                if ((L_to_R_xor < L_to_R[y] || T_to_B_xor < T_to_B[x] ||  CUBE_xor < CUBE[(y / 3) * 3 + x / 3]) && input_binary != 10'd0)begin
+                    wrong_graph <= 1'b1;
+                end
                 L_to_R[y] <= input_binary | L_to_R[y];
                 T_to_B[x] <= input_binary | T_to_B[x];
                 CUBE[(y / 3) * 3 + x / 3] <= input_binary | CUBE[(y / 3) * 3 + x / 3];
@@ -448,6 +456,7 @@ always@(posedge clk, negedge rst_n)begin
                     T_to_B[i] <= 10'd0;
                     CUBE[i] <= 10'd0;
                 end
+                wrong_graph <= 1'b0;
             end
         endcase
     end
