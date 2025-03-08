@@ -17,80 +17,7 @@ module SD(
     in,
     // Output signals
     out_valid,
-    out,
-
-
-
-    state,
-nstate,
-x,
-y,
-blank_cnt,
-blank0,
-blank1,
-blank2,
-blank3,
-blank4,
-blank5,
-blank6,
-blank7,
-blank8,
-blank9,
-blank10,
-blank11,
-blank12,
-blank13,
-blank14,
-stack0,
-stack1,
-stack2,
-stack3,
-stack4,
-stack5,
-stack6,
-stack7,
-stack8,
-stack9,
-stack10,
-stack11,
-stack12,
-stack13,
-stack14,
-L_to_R0,
-L_to_R1,
-L_to_R2,
-L_to_R3,
-L_to_R4,
-L_to_R5,
-L_to_R6,
-L_to_R7,
-L_to_R8,
-T_to_B0,
-T_to_B1,
-T_to_B2,
-T_to_B3,
-T_to_B4,
-T_to_B5,
-T_to_B6,
-T_to_B7,
-T_to_B8,
-CUBE0,
-CUBE1,
-CUBE2,
-CUBE3,
-CUBE4,
-CUBE5,
-CUBE6,
-CUBE7,
-CUBE8,
-stack_x,
-stack_y,
-stack_num,
-stack_num_plus1,
-cal_point,
-three_or_one,
-x_binary,
-input_binary
+    out
 );
 //================================================================
 //  INPUT AND OUTPUT DECLARATION                         
@@ -104,183 +31,40 @@ reg [3:0] in_reg;
 //================================================================
 //  reg & wire definition                        
 //================================================================
-// reg [3:0] state, nstate;
-// reg [3:0] x;
-// reg [3:0] y;
+reg [3:0] state, nstate;
+reg [3:0] x;
+reg [3:0] y;
 
-// reg [3:0] blank_cnt;
-// reg [7:0] blank[14:0];
-// wire [3:0] stack_x;
-// wire [3:0] stack_y;
-// wire [3:0] stack_num;
-// wire [3:0] stack_num_plus1;
-
-// reg [11:0] stack[14:0]; // y[11:8] x[7:4] num[3:0]
-// wire [9:0] cal_point;
-
-// reg [9:0] L_to_R[8:0];
-// reg [9:0] T_to_B[8:0];
-// reg [9:0] CUBE[8:0];
-
-// wire [9:0] three_or_one;
-// wire [9:0] x_binary;
-// wire [9:0] input_binary;
-
-output reg [3:0] state, nstate;
-output reg [3:0] x;
-output reg [3:0] y;
-output reg [3:0] blank_cnt;
-output [7:0] blank0;
-output [7:0] blank1;
-output [7:0] blank2;
-output [7:0] blank3;
-output [7:0] blank4;
-output [7:0] blank5;
-output [7:0] blank6;
-output [7:0] blank7;
-output [7:0] blank8;
-output [7:0] blank9;
-output [7:0] blank10;
-output [7:0] blank11;
-output [7:0] blank12;
-output [7:0] blank13;
-output [7:0] blank14;
-output [11:0] stack0;
-output [11:0] stack1;
-output [11:0] stack2;
-output [11:0] stack3;
-output [11:0] stack4;
-output [11:0] stack5;
-output [11:0] stack6;
-output [11:0] stack7;
-output [11:0] stack8;
-output [11:0] stack9;
-output [11:0] stack10;
-output [11:0] stack11;
-output [11:0] stack12;
-output [11:0] stack13;
-output [11:0] stack14;
-output [9:0] L_to_R0;
-output [9:0] L_to_R1;
-output [9:0] L_to_R2;
-output [9:0] L_to_R3;
-output [9:0] L_to_R4;
-output [9:0] L_to_R5;
-output [9:0] L_to_R6;
-output [9:0] L_to_R7;
-output [9:0] L_to_R8;
-output [9:0] T_to_B0;
-output [9:0] T_to_B1;
-output [9:0] T_to_B2;
-output [9:0] T_to_B3;
-output [9:0] T_to_B4;
-output [9:0] T_to_B5;
-output [9:0] T_to_B6;
-output [9:0] T_to_B7;
-output [9:0] T_to_B8;
-output [9:0] CUBE0;
-output [9:0] CUBE1;
-output [9:0] CUBE2;
-output [9:0] CUBE3;
-output [9:0] CUBE4;
-output [9:0] CUBE5;
-output [9:0] CUBE6;
-output [9:0] CUBE7;
-output [9:0] CUBE8;
-output [3:0] stack_x;
-output [3:0] stack_y;
-output [3:0] stack_num;
-output [3:0] stack_num_plus1;
-output [9:0] cal_point;
-output [9:0] three_or_one;
-output [9:0] x_binary;
-output [9:0] input_binary;
-
+reg [3:0] blank_cnt;
 reg [7:0] blank[14:0];
+wire [3:0] stack_x;
+wire [3:0] stack_y;
+wire [3:0] stack_num;
+wire [3:0] stack_num_plus1;
+
 reg [11:0] stack[14:0]; // y[11:8] x[7:4] num[3:0]
+wire [9:0] cal_point;
+
 reg [9:0] L_to_R[8:0];
 reg [9:0] T_to_B[8:0];
 reg [9:0] CUBE[8:0];
 
+wire [9:0] three_or_one;
+wire [9:0] x_binary;
+wire [9:0] input_binary;
 
-assign blank0 = blank[0];
-assign blank1 = blank[1];
-assign blank2 = blank[2];
-assign blank3 = blank[3];
-assign blank4 = blank[4];
-assign blank5 = blank[5];
-assign blank6 = blank[6];
-assign blank7 = blank[7];
-assign blank8 = blank[8];
-assign blank9 = blank[9];
-assign blank10 = blank[10];
-assign blank11 = blank[11];
-assign blank12 = blank[12];
-assign blank13 = blank[13];
-assign blank14 = blank[14];
-
-
-
-
-
-assign stack0 = stack[0];
-assign stack1 = stack[1];
-assign stack2 = stack[2];
-assign stack3 = stack[3];
-assign stack4 = stack[4];
-assign stack5 = stack[5];
-assign stack6 = stack[6];
-assign stack7 = stack[7];
-assign stack8 = stack[8];
-assign stack9 = stack[9];
-assign stack10 = stack[10];
-assign stack11 = stack[11];
-assign stack12 = stack[12];
-assign stack13 = stack[13];
-assign stack14 = stack[14];
-
-
-
-assign L_to_R0 = L_to_R[0];
-assign L_to_R1 = L_to_R[1];
-assign L_to_R2 = L_to_R[2];
-assign L_to_R3 = L_to_R[3];
-assign L_to_R4 = L_to_R[4];
-assign L_to_R5 = L_to_R[5];
-assign L_to_R6 = L_to_R[6];
-assign L_to_R7 = L_to_R[7];
-assign L_to_R8 = L_to_R[8];
-assign T_to_B0 = T_to_B[0];
-assign T_to_B1 = T_to_B[1];
-assign T_to_B2 = T_to_B[2];
-assign T_to_B3 = T_to_B[3];
-assign T_to_B4 = T_to_B[4];
-assign T_to_B5 = T_to_B[5];
-assign T_to_B6 = T_to_B[6];
-assign T_to_B7 = T_to_B[7];
-assign T_to_B8 = T_to_B[8];
-assign CUBE0 = CUBE[0];
-assign CUBE1 = CUBE[1];
-assign CUBE2 = CUBE[2];
-assign CUBE3 = CUBE[3];
-assign CUBE4 = CUBE[4];
-assign CUBE5 = CUBE[5];
-assign CUBE6 = CUBE[6];
-assign CUBE7 = CUBE[7];
-assign CUBE8 = CUBE[8];
 
 reg [9:0] L_to_R_stack[8:0];
 reg [9:0] T_to_B_stack[8:0];
 reg [9:0] CUBE_stack[8:0];
+
 reg wrong_graph;
 wire [9:0] L_to_R_xor;
 wire [9:0] T_to_B_xor;
 wire [9:0] CUBE_xor;
 
 
-wire [9:0] stack_binary[14:0];
 integer i;
-
 
 
 wire [3:0] stack_y_pre1;
@@ -310,21 +94,6 @@ assign cal_point = three_or_one ^ x_binary;
 
 int_to_binary u1(in_reg, input_binary);
 int_to_binary u2(x, x_binary);
-int_to_binary u3(stack[0][3:0], stack_binary[0]);
-int_to_binary u4(stack[1][3:0], stack_binary[1]);
-int_to_binary u5(stack[2][3:0], stack_binary[2]);
-int_to_binary u6(stack[3][3:0], stack_binary[3]);
-int_to_binary u7(stack[4][3:0], stack_binary[4]);
-int_to_binary u8(stack[5][3:0], stack_binary[5]);
-int_to_binary u9(stack[6][3:0], stack_binary[6]);
-int_to_binary u10(stack[7][3:0], stack_binary[7]);
-int_to_binary u11(stack[8][3:0], stack_binary[8]);
-int_to_binary u12(stack[9][3:0], stack_binary[9]);
-int_to_binary u13(stack[10][3:0], stack_binary[10]);
-int_to_binary u14(stack[11][3:0], stack_binary[11]);
-int_to_binary u15(stack[12][3:0], stack_binary[12]);
-int_to_binary u16(stack[13][3:0], stack_binary[13]);
-int_to_binary u17(stack[14][3:0], stack_binary[14]);
 
 
 //======<FSM STATE>========//
@@ -485,9 +254,6 @@ always@(posedge clk, negedge rst_n)begin
             R_DONE:begin
                 blank_cnt <= 4'd0;
             end
-            // PUSH:begin
-            //     blank_cnt <= (blank_cnt < 4'd14) ? blank_cnt + 4'd1 : blank_cnt;
-            // end
             RIGHT:begin
                 blank_cnt <= (blank_cnt < 4'd14) ? blank_cnt + 4'd1 : blank_cnt;
             end

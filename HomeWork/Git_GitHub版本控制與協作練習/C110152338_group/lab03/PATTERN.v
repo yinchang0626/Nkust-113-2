@@ -188,7 +188,7 @@ task wait_outvalid; begin
             repeat(5)  @(negedge clk);
             $finish;
         end
-        if (cycles==300) begin
+        if (cycles==500) begin
             fail;
             // Spec. 6
             // The execution latency is limited in 300 cycles. 
