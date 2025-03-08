@@ -1,3 +1,4 @@
+//Brandon
 //conflic
 module DIV(clk,rst,a,b,c,d);
 input clk,rst;
