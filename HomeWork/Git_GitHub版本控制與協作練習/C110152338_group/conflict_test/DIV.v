@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module DIV(clk, reset, num, den, out, valid);
 	parameter SIZE = 8'd96;
 	parameter DEC_SIZE = 8'd32;
@@ -7,6 +8,14 @@ module DIV(clk, reset, num, den, out, valid);
 	input [SIZE - 1:0] num, den;
 	output [SIZE - 1:0] out;
 	output valid;
+=======
+//Brandon
+//conflic
+module DIV(clk,rst,a,b,c,d);
+input clk,rst;
+input [7:0] a,b;
+output reg [8:0] c,d;
+>>>>>>> origin/feat-Brandon
 
 	reg [SIZE - 1:0] quo;
 	reg [SIZE - 1:0] rem;
