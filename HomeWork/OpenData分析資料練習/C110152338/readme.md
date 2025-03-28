@@ -34,3 +34,6 @@
 
 ## 程式執行結果
 執行後，程式會讀取資料、進行統計分析，並將結果以 HTML 格式輸出。報告中包含了每月送醫次數的統計資訊，並以條形圖形式展示送醫次數。您可以在報告中查看每月送醫次數的變化，並了解統計數據如最大、最小和平均送醫次數。
+
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/OpenData%E5%88%86%E6%9E%90%E8%B3%87%E6%96%99%E7%B7%B4%E7%BF%92/C110152338/ConsoleApp1/ConsoleApp1/PNG/2025-03-28%20112909.png)
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/OpenData%E5%88%86%E6%9E%90%E8%B3%87%E6%96%99%E7%B7%B4%E7%BF%92/C110152338/ConsoleApp1/ConsoleApp1/PNG/2025-03-28%20112943.png)
