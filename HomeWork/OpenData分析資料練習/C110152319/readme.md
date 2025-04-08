@@ -2,6 +2,8 @@
 
 - C110152319
 
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/OpenData%E5%88%86%E6%9E%90%E8%B3%87%E6%96%99%E7%B7%B4%E7%BF%92/C110152319/output.png)
+
 ## 資料來源
 臺北市政府開放資料平台 - 役男徵兵檢查BMI值統計.csv
 
