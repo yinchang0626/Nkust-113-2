@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "BXWPrqZwa88=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\krame\\OneDrive\\桌面\\csharp\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\krame\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
