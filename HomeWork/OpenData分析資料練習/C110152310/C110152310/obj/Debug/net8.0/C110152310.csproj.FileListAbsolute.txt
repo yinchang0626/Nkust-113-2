@@ -1,0 +1,17 @@
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\bin\Debug\net8.0\C110152310.exe
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\bin\Debug\net8.0\C110152310.deps.json
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\bin\Debug\net8.0\C110152310.runtimeconfig.json
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\bin\Debug\net8.0\C110152310.dll
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\bin\Debug\net8.0\C110152310.pdb
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.AssemblyInfoInputs.cache
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.AssemblyInfo.cs
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.csproj.CoreCompileInputs.cache
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.dll
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\refint\C110152310.dll
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.pdb
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.genruntimeconfig.cache
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\ref\C110152310.dll
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\bin\Debug\net8.0\CsvHelper.dll
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.csproj.AssemblyReference.cache
+C:\Users\krameri120\Desktop\csharp\C110152310\C110152310\obj\Debug\net8.0\C110152310.csproj.Up2Date
