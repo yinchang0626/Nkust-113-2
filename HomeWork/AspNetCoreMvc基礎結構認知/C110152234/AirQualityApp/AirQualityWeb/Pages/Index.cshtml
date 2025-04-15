@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+
+<h2>空氣品質資料</h2>
+
+@if (Model.Records != null && Model.Records.Count > 0)
+{
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>測站</th>
+                <th>項目</th>
+                <th>值</th>
+                <th>105年</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var record in Model.Records)
+        {
+            <tr>
+                <td>@record.測站</td>
+                <td>@record.項目</td>
+                <td>@record.值</td>
+                <td>@record._105年</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>找不到資料，請確認 data.json 是否存在於 wwwroot 中。</p>
+}
