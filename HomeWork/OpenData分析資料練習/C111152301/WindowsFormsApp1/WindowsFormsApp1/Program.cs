@@ -10,26 +10,26 @@ using System.Windows.Forms.VisualStyles;
 using WindowsFormsApp1;
 using System.Reflection.Emit;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Threading;
 
 public struct Data
 {
-    public List<int> Changhua_total, Changhua_, all_20_24, all_25_29, all_30_44, all_45_64, all_65,
-                    male_total, male_u20, male_20_24, male_25_29, male_30_44, male_45_64, male_65,
-                    female_total, female_u20, female_20_24, female_25_29, female_30_44, female_45_64, female_65;
+    public List<int> G42_num, G42_year, G42_month, G42_aveprice,
+                     G21_num, G21_year, G21_month, G21_aveprice,
+                     G41_num, G41_year, G41_month, G41_aveprice,
+                     G32_num, G32_year, G32_month, G32_aveprice;
+}
+public struct Data_count{
+    int year, month, num;
 }
 public struct Data_cal
 {
-    public double average_total, average_u20, average_20_24, average_25_29, average_30_44, average_45_64, average_65;
-    public int max_total, max_year_total, min_total, min_year_total,
-               max_u20, max_year_u20, min_u20, min_year_u20,
-               max_20_24, max_year_20_24, min_20_24, min_year_20_24,
-               max_25_29, max_year_25_29, min_25_29, min_year_25_29,
-               max_30_44, max_year_30_44, min_30_44, min_year_30_44,
-               max_45_64, max_year_45_64, min_45_64, min_year_45_64,
-               max_65, max_year_65, min_65, min_year_65;
+    public List<double> average_G42, average_G21, average_G41, average_G32;
+    public List<int> G42_max, G21_max, G41_max, G32_max,
+                     G42_min, G21_min, G41_min, G32_min;
 }
 
-namespace 政府公開資料分析
+namespace WindowsFormsApp1
 {
     internal static class Program
     {
@@ -40,67 +40,63 @@ namespace 政府公開資料分析
         static void Main()
         {
             // 呼叫 Load 方法來讀取和分類 CSV 數據
-            Data data = Load("../../sheep.csv");
+            var(changhua_data, yunlin_data) = Load("../../sheep.csv");
+            var (changhua_month_G42, changhua_month_G21, changhua_month_G41, changhua_month_G32) = count();
+            Data_cal changhua, yunlin;
+            (changhua.G42_max, changhua.G42_min, changhua.average_G42) = PrintStatistics(changhua, "閹公羊販賣數量");
+            (changhua.G21_max, changhua.G21_min, changhua.average_G21) = PrintStatistics(changhua, "女羊販賣數量");
+            (changhua.G41_max, changhua.G41_min, changhua.average_G41) = PrintStatistics(changhua, "努比亞雜交羊販賣數量");
+            (changhua.G32_max, changhua.G32_min, changhua.average_G32) = PrintStatistics(changhua, "規格外羊販賣數量");
 
-            Data_cal all, male, female;
-            (all.average_total, all.max_total, all.max_year_total, all.min_total, all.min_year_total) = PrintStatistics(data.all_total, "合計_總計 數據");
-            (all.average_u20, all.max_u20, all.max_year_u20, all.min_u20, all.min_year_u20) = PrintStatistics(data.all_u20, "合計_20歲以下 數據");
-            (all.average_20_24, all.max_20_24, all.max_year_20_24, all.min_20_24, all.min_year_20_24) = PrintStatistics(data.all_20_24, "合計_20-24歲 數據");
-            (all.average_25_29, all.max_25_29, all.max_year_25_29, all.min_25_29, all.min_year_25_29) = PrintStatistics(data.all_25_29, "合計_25-29歲 數據");
-            (all.average_30_44, all.max_30_44, all.max_year_30_44, all.min_30_44, all.min_year_30_44) = PrintStatistics(data.all_30_44, "合計_30-44歲 數據");
-            (all.average_45_64, all.max_45_64, all.max_year_45_64, all.min_45_64, all.min_year_45_64) = PrintStatistics(data.all_45_64, "合計_45-64歲 數據");
-            (all.average_65, all.max_65, all.max_year_65, all.min_65, all.min_year_65) = PrintStatistics(data.all_65, "合計_65歲以上 數據");
-
-            (male.average_total, male.max_total, male.max_year_total, male.min_total, male.min_year_total) = PrintStatistics(data.male_total, "男_總計 數據");
-            (male.average_u20, male.max_u20, male.max_year_u20, male.min_u20, male.min_year_u20) = PrintStatistics(data.male_u20, "男_20歲以下 數據");
-            (male.average_20_24, male.max_20_24, male.max_year_20_24, male.min_20_24, male.min_year_20_24) = PrintStatistics(data.male_20_24, "男_20-24歲 數據");
-            (male.average_25_29, male.max_25_29, male.max_year_25_29, male.min_25_29, male.min_year_25_29) = PrintStatistics(data.male_25_29, "男_25-29歲 數據");
-            (male.average_30_44, male.max_30_44, male.max_year_30_44, male.min_30_44, male.min_year_30_44) = PrintStatistics(data.male_30_44, "男_30-44歲 數據");
-            (male.average_45_64, male.max_45_64, male.max_year_45_64, male.min_45_64, male.min_year_45_64) = PrintStatistics(data.male_45_64, "男_45-64歲 數據");
-            (male.average_65, male.max_65, male.max_year_65, male.min_65, male.min_year_65) = PrintStatistics(data.male_65, "男_65歲以上 數據");
-
-            (female.average_total, female.max_total, female.max_year_total, female.min_total, female.min_year_total) = PrintStatistics(data.female_total, "女_總計 數據");
-            (female.average_u20, female.max_u20, female.max_year_u20, female.min_u20, female.min_year_u20) = PrintStatistics(data.female_u20, "女_20歲以下 數據");
-            (female.average_20_24, female.max_20_24, female.max_year_20_24, female.min_20_24, female.min_year_20_24) = PrintStatistics(data.female_20_24, "女_20-24歲 數據");
-            (female.average_25_29, female.max_25_29, female.max_year_25_29, female.min_25_29, female.min_year_25_29) = PrintStatistics(data.female_25_29, "女_25-29歲 數據");
-            (female.average_30_44, female.max_30_44, female.max_year_30_44, female.min_30_44, female.min_year_30_44) = PrintStatistics(data.female_30_44, "女_30-44歲 數據");
-            (female.average_45_64, female.max_45_64, female.max_year_45_64, female.min_45_64, female.min_year_45_64) = PrintStatistics(data.female_45_64, "女_45-64歲 數據");
-            (female.average_65, female.max_65, female.max_year_65, female.min_65, female.min_year_65) = PrintStatistics(data.female_65, "女_65歲以上 數據");
-
+            (yunlin.G42_max, yunlin.G42_min, yunlin.average_G42) = PrintStatistics(yunlin_data, "閹公羊販賣數量");
+            (yunlin.G21_max, yunlin.G21_min, yunlin.average_G21) = PrintStatistics(yunlin_data, "女羊販賣數量");
+            (yunlin.G41_max, yunlin.G41_min, yunlin.average_G41) = PrintStatistics(yunlin_data, "努比亞雜交羊販賣數量");
+            (yunlin.G32_max, yunlin.G32_min, yunlin.average_G32) = PrintStatistics(yunlin_data, "規格外羊販賣數量");
+  
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1()); // 啟動 Form1
         }
-        static Data Load(string filePath)
+        static (Data, Data) Load(string filePath)
         {
             // 註冊編碼提供程式以支援 Big5 編碼
             
 
             // 使用 Big5 編碼讀取 CSV 檔案內容
-                string csvContent = File.ReadAllText(filePath, Encoding.GetEncoding("Big5"));
-            List<int> all_total = new List<int>();
-            List<int> all_u20 = new List<int>();
-            List<int> all_20_24 = new List<int>();
-            List<int> all_25_29 = new List<int>();
-            List<int> all_30_44 = new List<int>();
-            List<int> all_45_64 = new List<int>();
-            List<int> all_65 = new List<int>();
-            List<int> male_total = new List<int>();
-            List<int> male_u20 = new List<int>();
-            List<int> male_20_24 = new List<int>();
-            List<int> male_25_29 = new List<int>();
-            List<int> male_30_44 = new List<int>();
-            List<int> male_45_64 = new List<int>();
-            List<int> male_65 = new List<int>();
-            List<int> female_total = new List<int>();
-            List<int> female_u20 = new List<int>();
-            List<int> female_20_24 = new List<int>();
-            List<int> female_25_29 = new List<int>();
-            List<int> female_30_44 = new List<int>();
-            List<int> female_45_64 = new List<int>();
-            List<int> female_65 = new List<int>();
-            Data data = new Data();
-
+            string csvContent = File.ReadAllText(filePath, Encoding.GetEncoding("Big5"));
+            List<int> changhua_G42_num = new List<int>();
+            List<int> changhua_G42_year = new List<int>();
+            List<int> changhua_G42_month = new List<int>();
+            List<int> changhua_G42_aveprice = new List<int>();
+            List<int> changhua_G21_num = new List<int>();
+            List<int> changhua_G21_year = new List<int>();
+            List<int> changhua_G21_month = new List<int>();
+            List<int> changhua_G21_aveprice = new List<int>();
+            List<int> changhua_G41_num = new List<int>();
+            List<int> changhua_G41_year = new List<int>();
+            List<int> changhua_G41_month = new List<int>();
+            List<int> changhua_G41_aveprice = new List<int>();
+            List<int> changhua_G32_num = new List<int>();
+            List<int> changhua_G32_year = new List<int>();
+            List<int> changhua_G32_month = new List<int>();
+            List<int> changhua_G32_aveprice = new List<int>();
+            List<int> yunlin_G42_num = new List<int>();
+            List<int> yunlin_G42_year = new List<int>();
+            List<int> yunlin_G42_month = new List<int>();
+            List<int> yunlin_G42_aveprice = new List<int>();
+            List<int> yunlin_G21_num = new List<int>();
+            List<int> yunlin_G21_year = new List<int>();
+            List<int> yunlin_G21_month = new List<int>();
+            List<int> yunlin_G21_aveprice = new List<int>();
+            List<int> yunlin_G41_num = new List<int>();
+            List<int> yunlin_G41_year = new List<int>();
+            List<int> yunlin_G41_month = new List<int>();
+            List<int> yunlin_G41_aveprice = new List<int>();
+            List<int> yunlin_G32_num = new List<int>();
+            List<int> yunlin_G32_year = new List<int>();
+            List<int> yunlin_G32_month = new List<int>();
+            List<int> yunlin_G32_aveprice = new List<int>();
+            Data data_changhua, data_yunlin;
             // 使用 TextFieldParser 從字串中解析 CSV 內容
             using (TextReader reader = new StringReader(csvContent))
             using (TextFieldParser parser = new TextFieldParser(reader))
@@ -111,83 +107,126 @@ namespace 政府公開資料分析
                 while (!parser.EndOfData)
                 {
                     string[] fields = parser.ReadFields(); // 讀取每一行的字段
-
-                    if (fields[1].Contains("合計"))
+                    string date = fields[3];
+                    string[] sdate = date.Split(new string[] { "/"}, StringSplitOptions.RemoveEmptyEntries);
+                    if (fields[1].Contains("雲林縣"))      // 儲存符合條件的資料
                     {
-                        all_total.Add(int.Parse(fields[2])); // 儲存符合條件的資料
-                        all_u20.Add(int.Parse(fields[3]));
-                        all_20_24.Add(int.Parse(fields[4]));
-                        all_25_29.Add(int.Parse(fields[5]));
-                        all_30_44.Add(int.Parse(fields[6]));
-                        all_45_64.Add(int.Parse(fields[7]));
-                        all_65.Add(ParseField(fields[8]));
+                        if (fields[4].Contains("G42"))
+                        {
+                            yunlin_G42_num.Add(int.Parse(fields[7]));
+                            yunlin_G42_year.Add(int.Parse(fields[0]));
+                            yunlin_G42_month.Add(int.Parse(fields[1]));
+                            yunlin_G42_aveprice.Add(int.Parse(fields[9]));
+                        }
+                        else if (fields[4].Contains("G21"))
+                        {
+                            yunlin_G21_num.Add(int.Parse(fields[7]));
+                            yunlin_G21_year.Add(int.Parse(fields[0]));
+                            yunlin_G21_month.Add(int.Parse(fields[1]));
+                            yunlin_G21_aveprice.Add(int.Parse(fields[9]));
+                        }
+                        else if (fields[4].Contains("G41"))
+                        {
+                            yunlin_G41_num.Add(int.Parse(fields[7]));
+                            yunlin_G41_year.Add(int.Parse(fields[0]));
+                            yunlin_G41_month.Add(int.Parse(fields[1]));
+                            yunlin_G41_aveprice.Add(int.Parse(fields[9]));
+                        }
+                        else if (fields[4].Contains("G32"))
+                        {
+                            yunlin_G32_num.Add(int.Parse(fields[7]));
+                            yunlin_G32_year.Add(int.Parse(fields[0]));
+                            yunlin_G32_month.Add(int.Parse(fields[1]));
+                            yunlin_G32_aveprice.Add(int.Parse(fields[9]));
+                        }
                     }
 
-                    if (fields[1].Contains("男"))
+                    if (fields[1].Contains("彰化縣"))
                     {
-                        male_total.Add(int.Parse(fields[2]));
-                        male_u20.Add(int.Parse(fields[3]));
-                        male_20_24.Add(int.Parse(fields[4]));
-                        male_25_29.Add(int.Parse(fields[5]));
-                        male_30_44.Add(int.Parse(fields[6]));
-                        male_45_64.Add(int.Parse(fields[7]));
-                        male_65.Add(ParseField(fields[8]));
-                    }
-
-                    if (fields[1].Contains("女"))
-                    {
-                        female_total.Add(int.Parse(fields[2]));
-                        female_u20.Add(int.Parse(fields[3]));
-                        female_20_24.Add(int.Parse(fields[4]));
-                        female_25_29.Add(int.Parse(fields[5]));
-                        female_30_44.Add(int.Parse(fields[6]));
-                        female_45_64.Add(int.Parse(fields[7]));
-                        female_65.Add(ParseField(fields[8]));
+                        if (fields[4].Contains("G42"))
+                        {
+                            changhua_G42_num.Add(int.Parse(fields[7]));
+                            changhua_G42_year.Add(int.Parse(fields[0]));
+                            changhua_G42_month.Add(int.Parse(fields[1]));
+                            changhua_G42_aveprice.Add(int.Parse(fields[9]));
+                        }
+                        else if (fields[4].Contains("G21"))
+                        {
+                            changhua_G21_num.Add(int.Parse(fields[7]));
+                            changhua_G21_year.Add(int.Parse(fields[0]));
+                            changhua_G21_month.Add(int.Parse(fields[1]));
+                            changhua_G21_aveprice.Add(int.Parse(fields[9]));
+                        }
+                        else if (fields[4].Contains("G41"))
+                        {
+                            changhua_G41_num.Add(int.Parse(fields[7]));
+                            changhua_G41_year.Add(int.Parse(fields[0]));
+                            changhua_G41_month.Add(int.Parse(fields[1]));
+                            changhua_G41_aveprice.Add(int.Parse(fields[9]));
+                        }
+                        else if (fields[4].Contains("G32"))
+                        {
+                            changhua_G32_num.Add(int.Parse(fields[7]));
+                            changhua_G32_year.Add(int.Parse(fields[0]));
+                            changhua_G32_month.Add(int.Parse(fields[1]));
+                            changhua_G32_aveprice.Add(int.Parse(fields[9]));
+                        }
                     }
                 }
             }
-            data.all_total = all_total;
-            data.all_u20 = all_u20;
-            data.all_20_24 = all_20_24;
-            data.all_25_29 = all_25_29;
-            data.all_30_44 = all_30_44;
-            data.all_45_64 = all_45_64;
-            data.all_65 = all_65;
-            data.male_total = male_total;
-            data.male_u20 = male_u20;
-            data.male_20_24 = male_20_24;
-            data.male_25_29 = male_25_29;
-            data.male_30_44 = male_30_44;
-            data.male_45_64 = male_45_64;
-            data.male_65 = male_65;
-            data.female_total = female_total;
-            data.female_u20 = female_u20;
-            data.female_20_24 = female_20_24;
-            data.female_25_29 = female_25_29;
-            data.female_30_44 = female_30_44;
-            data.female_45_64 = female_45_64;
-            data.female_65 = female_65;
-            return data;
+            data_changhua.G42_num = changhua_G42_num;
+            data_changhua.G42_year = changhua_G42_year;
+            data_changhua.G42_month = changhua_G42_month;
+            data_changhua.G42_aveprice = changhua_G42_aveprice;
+            data_changhua.G21_num = changhua_G21_num;
+            data_changhua.G21_year = changhua_G21_year;
+            data_changhua.G21_month = changhua_G21_month;
+            data_changhua.G21_aveprice = changhua_G21_aveprice;
+            data_changhua.G41_num = changhua_G41_num;
+            data_changhua.G41_year = changhua_G41_year;
+            data_changhua.G41_month = changhua_G41_month;
+            data_changhua.G41_aveprice = changhua_G41_aveprice;
+            data_changhua.G32_num = changhua_G32_num;
+            data_changhua.G32_year = changhua_G32_year;
+            data_changhua.G32_month = changhua_G32_month;
+            data_changhua.G32_aveprice = changhua_G32_aveprice;
+            data_yunlin.G42_num = yunlin_G42_num;
+            data_yunlin.G42_year = yunlin_G42_year;
+            data_yunlin.G42_month = yunlin_G42_month;
+            data_yunlin.G42_aveprice = yunlin_G42_aveprice;
+            data_yunlin.G21_num = yunlin_G21_num;
+            data_yunlin.G21_year = yunlin_G21_year;
+            data_yunlin.G21_month = yunlin_G21_month;
+            data_yunlin.G21_aveprice = yunlin_G21_aveprice;
+            data_yunlin.G41_num = yunlin_G41_num;
+            data_yunlin.G41_year = yunlin_G41_year;
+            data_yunlin.G41_month = yunlin_G41_month;
+            data_yunlin.G41_aveprice = yunlin_G41_aveprice;
+            data_yunlin.G32_num = yunlin_G32_num;
+            data_yunlin.G32_year = yunlin_G32_year;
+            data_yunlin.G32_month = yunlin_G32_month;
+            data_yunlin.G32_aveprice = yunlin_G32_aveprice;
+            return (data_changhua, data_yunlin);
         }
 
-        static int ParseField(string field)
-        {
-            return int.TryParse(field, out int value) ? value : 0;
-        }
 
-        static (double, int, int, int, int) PrintStatistics(List<int> data, string label)
+        static (int, int, int, double) PrintStatistics(List<int> data, string label)
         {
+
             double average = CalculateAverage(data);
             var (max, max_year) = CalculateMax(data);
             var (min, min_year) = CalculateMin(data);
 
             Console.WriteLine($"{label}");
-            Console.WriteLine($"平均值: {average}");
             Console.WriteLine($"最大值: {max}, 年份: {max_year}");
             Console.WriteLine($"最小值: {min}, 年份: {min_year}");
+            Console.WriteLine($"平均值: {average}");
 
-            return (average, max, max_year, min, min_year);
+            return (max, max, min, min_year, average);
         }
+
+        //統計月份羊隻數量
+        static ()
 
         // 計算平均值
         static double CalculateAverage(List<int> data)
