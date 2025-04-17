@@ -1,9 +1,14 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models
 {
     public class RescueData
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public int Month { get; set; }  // 月份
         public int GeneralAmbulance { get; set; }  // 一般救護車
         public int ICUAmbulance { get; set; }  // 加護救護車
@@ -29,5 +34,8 @@ namespace WebApp.Models
         public int AnimalBite { get; set; }  // 生物咬螫傷
         public int Trauma_OHCA { get; set; }  // 創傷類_OHCA
         public int Trauma_Other { get; set; }  // 創傷類_其他
+
+
+        public string? Memo { get; set; }
     }
 }
