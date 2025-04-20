@@ -54,10 +54,10 @@ namespace WindowsFormsApp1
                 chart1.Series[2].Points.AddXY(xLabel, yunlin_month_G41[i].avenum);
                 chart1.Series[3].Points.AddXY(xLabel, yunlin_month_G32[i].avenum);
 
-                chart2.Series[0].Points.AddXY(xLabel, yunlin_month_G42[i].avenum);
-                chart2.Series[1].Points.AddXY(xLabel, yunlin_month_G21[i].avenum);
-                chart2.Series[2].Points.AddXY(xLabel, yunlin_month_G41[i].avenum);
-                chart2.Series[3].Points.AddXY(xLabel, yunlin_month_G32[i].avenum);
+                chart2.Series[0].Points.AddXY(xLabel, yunlin_month_G42[i].aveprice);
+                chart2.Series[1].Points.AddXY(xLabel, yunlin_month_G21[i].aveprice);
+                chart2.Series[2].Points.AddXY(xLabel, yunlin_month_G41[i].aveprice);
+                chart2.Series[3].Points.AddXY(xLabel, yunlin_month_G32[i].aveprice);
             }
             label1.Text = $"閹公羊10年平均售賣: {yunlin_num.average_G42}隻, 最大值: {yunlin_num.G42_max_year}/{yunlin_num.G42_max_month} {yunlin_num.G42_max}隻, 最小值: {yunlin_num.G42_min_year}/{yunlin_num.G21_min_month} {yunlin_num.G42_min}隻\n" +
                           $"女羊10年平均售賣: {yunlin_num.average_G21}隻, 最大值: {yunlin_num.G21_max_year}/{yunlin_num.G21_max_month} {yunlin_num.G21_max}隻, 最小值: {yunlin_num.G21_min_year}/{yunlin_num.G21_min_month}  {yunlin_num.G21_min}隻\n" +

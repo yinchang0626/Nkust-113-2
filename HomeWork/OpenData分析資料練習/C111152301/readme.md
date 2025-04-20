@@ -18,7 +18,7 @@
 3. 可以選擇資料來源地(雲林、彰化)，並顯示該地10年內的總資料筆數
 
 ![alt text](image-5.png)
-![alt text](image-6.png)
+![alt text](image-1.png)
 
 ---
 
