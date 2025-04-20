@@ -48,7 +48,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // 呼叫 Load 方法來讀取和分類 CSV 數據
-            var(changhua_data, yunlin_data) = Load("../../sheep.csv");
+            var(changhua_count, yunlin_count, changhua_data, yunlin_data) = Load("../../sheep.csv");
             var (changhua_month_G42, changhua_month_G21, changhua_month_G41, changhua_month_G32) = Count(changhua_data);
             var (yunlin_month_G42, yunlin_month_G21, yunlin_month_G41, yunlin_month_G32) = Count(yunlin_data);
             Data_cal changhua_num, yunlin_num, changhua_price, yunlin_price;
@@ -72,16 +72,13 @@ namespace WindowsFormsApp1
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(changhua_month_G42, changhua_month_G21, changhua_month_G41, changhua_month_G32, yunlin_month_G42, yunlin_month_G21,
+            Application.Run(new Form1(changhua_count, yunlin_count, changhua_month_G42, changhua_month_G21, changhua_month_G41, changhua_month_G32, yunlin_month_G42, yunlin_month_G21,
                                       yunlin_month_G41, yunlin_month_G32, changhua_num, yunlin_num, changhua_price, yunlin_price)); // 啟動 Form1
         }
-        static (Data, Data) Load(string filePath)
+        static (int, int, Data, Data) Load(string filePath)
         {
-            // 註冊編碼提供程式以支援 Big5 編碼
-            
-
             // 使用 Big5 編碼讀取 CSV 檔案內容
-                string csvContent = File.ReadAllText(filePath, Encoding.GetEncoding("Big5"));
+            string csvContent = File.ReadAllText(filePath, Encoding.GetEncoding("Big5"));
             List<int> changhua_G42_num = new List<int>();
             List<int> changhua_G42_year = new List<int>();
             List<int> changhua_G42_month = new List<int>();
@@ -114,6 +111,7 @@ namespace WindowsFormsApp1
             List<int> yunlin_G32_year = new List<int>();
             List<int> yunlin_G32_month = new List<int>();
             List<double> yunlin_G32_aveprice = new List<double>();
+            int yunlin_num = 0, changhua_num = 0;
             Data data_changhua, data_yunlin;
             // 使用 TextFieldParser 從字串中解析 CSV 內容
             using (TextReader reader = new StringReader(csvContent))
@@ -129,6 +127,7 @@ namespace WindowsFormsApp1
                     string[] sdate = date.Split(new string[] { "/"}, StringSplitOptions.RemoveEmptyEntries);
                     if (fields[1].Contains("雲林縣"))      // 儲存符合條件的資料
                     {
+                        yunlin_num++;
                         if (fields[4].Contains("G42"))
                         {
                             yunlin_G42_num.Add(int.Parse(fields[7]));
@@ -161,6 +160,7 @@ namespace WindowsFormsApp1
 
                     if (fields[1].Contains("彰化縣"))
                     {
+                        changhua_num++;
                         if (fields[4].Contains("G42"))
                         {
                             changhua_G42_num.Add(int.Parse(fields[7]));
@@ -224,7 +224,7 @@ namespace WindowsFormsApp1
             data_yunlin.G32_year = yunlin_G32_year;
             data_yunlin.G32_month = yunlin_G32_month;
             data_yunlin.G32_aveprice = yunlin_G32_aveprice;
-            return (data_changhua, data_yunlin);
+            return (changhua_num, yunlin_num, data_changhua, data_yunlin);
         }
 
         //統計月份羊隻數量
@@ -397,7 +397,7 @@ namespace WindowsFormsApp1
                 if (data[i].aveprice > max)
                 {
                     max = data[i].aveprice;
-                    year = (i / 12) + 2014;
+                    year = (i / 12) + 2015;
                     month = i % 12;
                 }
             }
@@ -416,7 +416,7 @@ namespace WindowsFormsApp1
                 if (data[i].aveprice < min)
                 {
                     min = data[i].aveprice;
-                    year = i + 57;
+                    year = (i / 12) + 2015;
                     month = i % 12;
                 }
             }

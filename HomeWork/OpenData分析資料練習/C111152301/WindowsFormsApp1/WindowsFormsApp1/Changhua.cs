@@ -61,14 +61,14 @@ namespace WindowsFormsApp1
                 chart2.Series[3].Points.AddXY(changhua_month_G32[i].year + "/" + changhua_month_G32[i].month, changhua_month_G32[i].aveprice);
             }
             
-            label1.Text = $"閹公羊10年平均售賣: {changhua_num.average_G42}隻, 最大值:{changhua_num.G42_max_year}/{changhua_num.G42_max_month} {changhua_num.G42_max}隻, 最小值:{changhua_num.G42_min_year}/{changhua_num.G42_min_month} {changhua_num.G42_min}隻\n" +
-                          $"女羊10年平均售賣: {changhua_num.average_G21}隻, 最大值:{changhua_num.G21_max_year}/{changhua_num.G21_max_month} {changhua_num.G21_max}隻, 最小值:{changhua_num.G21_min_year}/{changhua_num.G21_min_month}  {changhua_num.G21_min}隻\n" +
-                          $"努比亞雜交羊10年平均售賣: {changhua_num.average_G41}隻, 最大值:{changhua_num.G41_max_year}/{changhua_num.G41_max_month} {changhua_num.G41_max}隻, 最小值:{changhua_num.G41_min_year}/{changhua_num.G41_min_month} {changhua_num.G41_min}隻\n" +
-                          $"規格外羊10年平均售賣: {changhua_num.average_G32}隻, 最大值:{changhua_num.G32_max_year}/{changhua_num.G32_max_month} {changhua_num.G32_max}隻, 最小值:{changhua_num.G32_min_year}/{changhua_num.G32_min_month} {changhua_num.G32_min}隻\n";
-            label2.Text = $"閹公羊10年平均售賣: {changhua_price.average_G42}元, 最大值:{changhua_price.G42_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值:{changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n" +
-                          $"女羊10年平均售賣: {changhua_price.average_G21}元, 最大值:{changhua_price.G21_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值:{changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n" +
-                          $"努比亞雜交羊10年平均售賣: {changhua_price.average_G41}元, 最大值:{changhua_price.G41_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值:{changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n" +
-                          $"規格外羊10年平均售賣: {changhua_price.average_G32}元, 最大值:{changhua_price.G42_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值:{changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n";
+            label1.Text = $"閹公羊10年平均售賣: {changhua_num.average_G42}隻, 最大值: {changhua_num.G42_max_year}/{changhua_num.G42_max_month} {changhua_num.G42_max}隻, 最小值: {changhua_num.G42_min_year}/{changhua_num.G42_min_month} {changhua_num.G42_min}隻\n" +
+                          $"女羊10年平均售賣: {changhua_num.average_G21}隻, 最大值: {changhua_num.G21_max_year}/{changhua_num.G21_max_month} {changhua_num.G21_max}隻, 最小值: {changhua_num.G21_min_year}/{changhua_num.G21_min_month}  {changhua_num.G21_min}隻\n" +
+                          $"努比亞雜交羊10年平均售賣: {changhua_num.average_G41}隻, 最大值: {changhua_num.G41_max_year}/{changhua_num.G41_max_month} {changhua_num.G41_max}隻, 最小值: {changhua_num.G41_min_year}/{changhua_num.G41_min_month} {changhua_num.G41_min}隻\n" +
+                          $"規格外羊10年平均售賣: {changhua_num.average_G32}隻, 最大值: {changhua_num.G32_max_year}/{changhua_num.G32_max_month} {changhua_num.G32_max}隻, 最小值: {changhua_num.G32_min_year}/{changhua_num.G32_min_month} {changhua_num.G32_min}隻\n";
+            label2.Text = $"閹公羊10年平均售賣: {changhua_price.average_G42}元, 最大值: {changhua_price.G42_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值: {changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n" +
+                          $"女羊10年平均售賣: {changhua_price.average_G21}元, 最大值: {changhua_price.G21_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值: {changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n" +
+                          $"努比亞雜交羊10年平均售賣: {changhua_price.average_G41}元, 最大值: {changhua_price.G41_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值: {changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n" +
+                          $"規格外羊10年平均售賣: {changhua_price.average_G32}元, 最大值: {changhua_price.G42_max_year}/{changhua_price.G42_max_month} {changhua_price.G42_max}元, 最小值: {changhua_price.G32_min_year}/{changhua_price.G32_min_month} {changhua_price.G32_min}元\n";
         }
 
        
