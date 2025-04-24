@@ -1,0 +1,21 @@
+﻿<h1 class="mt-4 mb-3">Rescue Report</h1>
+
+<canvas id="reportChart" width="400" height="200"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('reportChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar'], // 範例
+                datasets: [{
+                    label: 'Transported',
+                    data: [30, 45, 50],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            }
+        });
+    </script>
+}
