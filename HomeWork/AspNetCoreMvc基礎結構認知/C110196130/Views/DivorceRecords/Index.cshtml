@@ -1,0 +1,25 @@
+﻿  @model IEnumerable<C110196130.Models.DivorceRecord>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>統計期</th>
+            <th>登記發生日期</th>
+            <th>離婚對數總計</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>@record.統計期</td>
+                <td>@record.登記發生日期</td>
+                <td>@record.離婚對數總計</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = record.統計期 })">查看</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
