@@ -2,7 +2,7 @@
 
 此專案為 ASP.NET Core MVC 網站，提供高雄市救護資料的展示、上傳與報表功能。
 
-![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/AspNetCoreMvc基礎結構認知/C110152338/PNG/2025-04-24)
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/AspNetCoreMvc%E5%9F%BA%E7%A4%8E%E7%B5%90%E6%A7%8B%E8%AA%8D%E7%9F%A5/C110152338/PNG/2025-04-24.png)
 
 ## 使用
 
