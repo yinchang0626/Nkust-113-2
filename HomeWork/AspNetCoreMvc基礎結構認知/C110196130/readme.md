@@ -1,4 +1,6 @@
 # Divorce Records Web Application
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/AspNetCoreMvc%E5%9F%BA%E7%A4%8E%E7%B5%90%E6%A7%8B%E8%AA%8D%E7%9F%A5/C110196130/PNG/2025-04-24%20232509.png)
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/AspNetCoreMvc%E5%9F%BA%E7%A4%8E%E7%B5%90%E6%A7%8B%E8%AA%8D%E7%9F%A5/C110196130/PNG/2025-04-24%20232534.png)
 
 ## 專案概述
 
