@@ -10,6 +10,7 @@ namespace ConsoleApp1.Services
 {
     public class RescueService
     {
+        public RescueService() { }
         // 讀取 XML 資料
         public List<RescueData> LoadData()
         {
