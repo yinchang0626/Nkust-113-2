@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "BqERMfSRP4k=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jackyjuang\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jackyjuang\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
