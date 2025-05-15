@@ -6,3 +6,38 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="container mt-5">
+    <h2>管理實體</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">卡片管理</h5>
+                    <p class="card-text">管理系統內的所有卡片，包含編輯、新增與刪除功能。</p>
+                    <a asp-controller="CardPage" asp-action="Index" class="btn btn-primary">查看卡片列表</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">裝置管理</h5>
+                    <p class="card-text">管理系統內的所有裝置，包含編輯、新增與刪除功能。</p>
+                    <a asp-controller="DevicePage" asp-action="Index" class="btn btn-primary">查看裝置列表</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">權限管理</h5>
+                    <p class="card-text">管理卡片對裝置的存取權限，設定誰可以訪問哪些裝置。</p>
+                    <a asp-controller="CardAccessGrantPage" asp-action="Index" class="btn btn-primary">查看權限列表</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

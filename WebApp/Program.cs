@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
-using WebApp.Services;
 
 namespace WebApp
 {
@@ -12,7 +11,6 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IRescueService, RescueService>();
             //builder.Services.AddScoped<XmlParser>();
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
