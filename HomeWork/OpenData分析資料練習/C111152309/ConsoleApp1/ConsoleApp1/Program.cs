@@ -138,10 +138,18 @@ namespace DataAnalyzer
 			Console.WriteLine("--------------------------------------------------");
 
 			// 檔案路徑 - 實際使用時請替換為正確路徑
-			string filePath = "C:\\Users\\buta\\Downloads\\殯葬設施(列管公墓及公墓)彙整表--1120323修.csv";
+			string filePath = Path.Combine("Data", "殯葬設施(列管公墓及公墓)彙整表--1120323修.csv");
 
 			try
 			{
+				// 檢查檔案是否存在
+				if (!File.Exists(filePath))
+				{
+					Console.WriteLine($"錯誤: 找不到檔案 {Path.GetFullPath(filePath)}");
+					Console.WriteLine("請確認檔案是否存在於指定路徑");
+					Console.ReadKey();
+					return;
+				}
 				// 解析資料
 				IDataParser<Facility> parser = new CsvDataParser();
 				var facilities = parser.ParseData(filePath);
