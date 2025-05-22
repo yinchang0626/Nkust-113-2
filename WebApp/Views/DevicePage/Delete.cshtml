@@ -1,0 +1,59 @@
+@model WebApp.Models.Device
+
+@{
+    ViewData["Title"] = "Delete Device";
+}
+
+<h1>Delete Device</h1>
+
+<div class="alert alert-danger">
+    <h3>Are you sure you want to delete this device?</h3>
+    <p>This action cannot be undone.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4>@Model.DisplayName</h4>
+                <span class="badge bg-primary">@Model.DeviceCode</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DisplayName)</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.DisplayName)</dd>
+
+                            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DeviceCode)</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.DeviceCode)</dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.RemoteId)</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.RemoteId)</dd>
+
+                            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.IpAddress)</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.IpAddress)</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                @if (Model.AccessGrants != null && Model.AccessGrants.Any())
+                {
+                    <div class="alert alert-warning mt-3">
+                        <strong>警告:</strong> 刪除此設備將同時移除 @Model.AccessGrants.Count 個卡片的授權關係。
+                    </div>
+                }
+            </div>
+            <div class="card-footer">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
-using WebApp.Services;
+using WebApp.Mappings; // For MappingProfile
+using AutoMapper;     // For MapperConfiguration, IMapper
 
 namespace WebApp
 {
@@ -12,10 +13,19 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IRescueService, RescueService>();
-            //builder.Services.AddScoped<XmlParser>();
+            
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Manually configure and register AutoMapper
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<MappingProfile>();
+                // Add other profiles here if you have them:
+                // cfg.AddProfile<AnotherMappingProfile>();
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
 
             var app = builder.Build();
 
@@ -28,15 +38,14 @@ namespace WebApp
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles(); // Ensure static files are served.
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

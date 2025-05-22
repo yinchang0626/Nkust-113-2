@@ -1,0 +1,61 @@
+@model IEnumerable<WebApp.Models.CardAccessGrant>
+
+@{
+    ViewData["Title"] = "Access Grants List";
+}
+
+<h1>Access Grants List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                Card
+            </th>
+            <th>
+                Card Number
+            </th>
+            <th>
+                Device
+            </th>
+            <th>
+                Device Code
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Card.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Card.CardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Device.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Device.DeviceCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
