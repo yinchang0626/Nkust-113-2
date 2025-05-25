@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BqERMfSRP4k=",
+  "dgSpecHash": "E6ZhZJ7n3qE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jackyjuang\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "C:\\Users\\a0979\\OneDrive\\文件\\Nkust-113-2\\HomeWork\\OpenData分析資料練習\\C111181149\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jackyjuang\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512"
+    "C:\\Users\\a0979\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512"
   ],
   "logs": []
 }
