@@ -1,0 +1,934 @@
+{
+ "cwaopendata": {
+  "@xmlns": "urn:cwa:gov:tw:cwacommon:0.1",
+  "identifier": "dd51e336-c30a-42e2-bcdc-9fdc46ecffbe",
+  "sender": "od@cwa.gov.tw",
+  "sent": "2025-03-26T20:52:20+08:00",
+  "status": "Actual",
+  "msgType": "Issue",
+  "dataid": "O-A0091-001",
+  "scope": "Public",
+  "dataset": {
+   "Station": [
+    {
+     "StationName": "基隆",
+     "StationId": "466940",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.135104",
+        "StationLongitude": "121.732242"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.133314",
+        "StationLongitude": "121.740475"
+       }
+      ],
+      "StationAltitude": "26.7"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.76"
+     }
+    },
+    {
+     "StationName": "淡水",
+     "StationId": "466900",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.166664",
+        "StationLongitude": "121.440672"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.164889",
+        "StationLongitude": "121.448906"
+       }
+      ],
+      "StationAltitude": "19.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.93"
+     }
+    },
+    {
+     "StationName": "新北",
+     "StationId": "466881",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.960990",
+        "StationLongitude": "121.516977"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.959207",
+        "StationLongitude": "121.525196"
+       }
+      ],
+      "StationAltitude": "24.5"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "18.69"
+     }
+    },
+    {
+     "StationName": "陽明山",
+     "StationId": "466930",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.163858",
+        "StationLongitude": "121.536313"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.162078",
+        "StationLongitude": "121.544547"
+       }
+      ],
+      "StationAltitude": "607.1"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "23.07"
+     }
+    },
+    {
+     "StationName": "鞍部",
+     "StationId": "466910",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.184365",
+        "StationLongitude": "121.521495"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.182586",
+        "StationLongitude": "121.529731"
+       }
+      ],
+      "StationAltitude": "837.6"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "24.06"
+     }
+    },
+    {
+     "StationName": "新竹",
+     "StationId": "467571",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.829613",
+        "StationLongitude": "121.006012"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.827853",
+        "StationLongitude": "121.014219"
+       }
+      ],
+      "StationAltitude": "26.9"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "20.46"
+     }
+    },
+    {
+     "StationName": "臺中",
+     "StationId": "467490",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.147494",
+        "StationLongitude": "120.675919"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.145736",
+        "StationLongitude": "120.684075"
+       }
+      ],
+      "StationAltitude": "84.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.73"
+     }
+    },
+    {
+     "StationName": "澎湖",
+     "StationId": "467350",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.567220",
+        "StationLongitude": "119.554987"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.565503",
+        "StationLongitude": "119.563094"
+       }
+      ],
+      "StationAltitude": "10.7"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "23.76"
+     }
+    },
+    {
+     "StationName": "日月潭",
+     "StationId": "467650",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.883099",
+        "StationLongitude": "120.899911"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.881325",
+        "StationLongitude": "120.908050"
+       }
+      ],
+      "StationAltitude": "1017.5"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "25.72"
+     }
+    },
+    {
+     "StationName": "阿里山",
+     "StationId": "467530",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.509984",
+        "StationLongitude": "120.805129"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.508208",
+        "StationLongitude": "120.813242"
+       }
+      ],
+      "StationAltitude": "2413.4"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "27.99"
+     }
+    },
+    {
+     "StationName": "玉山",
+     "StationId": "467550",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.488964",
+        "StationLongitude": "120.951318"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.487180",
+        "StationLongitude": "120.959430"
+       }
+      ],
+      "StationAltitude": "3844.8"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "31.44"
+     }
+    },
+    {
+     "StationName": "嘉義",
+     "StationId": "467480",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.497684",
+        "StationLongitude": "120.424796"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.495925",
+        "StationLongitude": "120.432906"
+       }
+      ],
+      "StationAltitude": "26.9"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "24.16"
+     }
+    },
+    {
+     "StationName": "臺南",
+     "StationId": "467410",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.995039",
+        "StationLongitude": "120.196846"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.993280",
+        "StationLongitude": "120.204920"
+       }
+      ],
+      "StationAltitude": "40.8"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "25.18"
+     }
+    },
+    {
+     "StationName": "高雄",
+     "StationId": "467441",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.732201",
+        "StationLongitude": "120.304459"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.730432",
+        "StationLongitude": "120.312516"
+       }
+      ],
+      "StationAltitude": "11.8"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "25.14"
+     }
+    },
+    {
+     "StationName": "恆春",
+     "StationId": "467590",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.005700",
+        "StationLongitude": "120.738326"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.003897",
+        "StationLongitude": "120.746339"
+       }
+      ],
+      "StationAltitude": "22.3"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "25.58"
+     }
+    },
+    {
+     "StationName": "宜蘭",
+     "StationId": "467080",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.765773",
+        "StationLongitude": "121.748322"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.763975",
+        "StationLongitude": "121.756528"
+       }
+      ],
+      "StationAltitude": "7.2"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.93"
+     }
+    },
+    {
+     "StationName": "花蓮",
+     "StationId": "466990",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.976933",
+        "StationLongitude": "121.605126"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.975128",
+        "StationLongitude": "121.613275"
+       }
+      ],
+      "StationAltitude": "16.1"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "24.57"
+     }
+    },
+    {
+     "StationName": "成功",
+     "StationId": "467610",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.099296",
+        "StationLongitude": "121.365340"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.097486",
+        "StationLongitude": "121.373428"
+       }
+      ],
+      "StationAltitude": "33.5"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "24.91"
+     }
+    },
+    {
+     "StationName": "臺東",
+     "StationId": "467660",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.754017",
+        "StationLongitude": "121.146522"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.752211",
+        "StationLongitude": "121.154586"
+       }
+      ],
+      "StationAltitude": "9.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.78"
+     }
+    },
+    {
+     "StationName": "大武",
+     "StationId": "467540",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.357523",
+        "StationLongitude": "120.895703"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.355720",
+        "StationLongitude": "120.903740"
+       }
+      ],
+      "StationAltitude": "8.1"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "25.11"
+     }
+    },
+    {
+     "StationName": "蘭嶼",
+     "StationId": "467620",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.038737",
+        "StationLongitude": "121.550410"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "22.036900",
+        "StationLongitude": "121.558430"
+       }
+      ],
+      "StationAltitude": "324.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "15.84"
+     }
+    },
+    {
+     "StationName": "彭佳嶼",
+     "StationId": "466950",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.629774",
+        "StationLongitude": "122.071474"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.627975",
+        "StationLongitude": "122.079744"
+       }
+      ],
+      "StationAltitude": "101.7"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "20.70"
+     }
+    },
+    {
+     "StationName": "東吉島",
+     "StationId": "467300",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.258999",
+        "StationLongitude": "119.659533"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.257270",
+        "StationLongitude": "119.667620"
+       }
+      ],
+      "StationAltitude": "43.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "23.88"
+     }
+    },
+    {
+     "StationName": "南沙島",
+     "StationId": "469020",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "10.372116",
+        "StationLongitude": "114.356938"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "10.370203",
+        "StationLongitude": "114.364286"
+       }
+      ],
+      "StationAltitude": "4.5"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.22"
+     }
+    },
+    {
+     "StationName": "東沙島",
+     "StationId": "468100",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "20.702520",
+        "StationLongitude": "116.722116"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "20.700856",
+        "StationLongitude": "116.730000"
+       }
+      ],
+      "StationAltitude": "4.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "27.41"
+     }
+    },
+    {
+     "StationName": "永康",
+     "StationId": "467420",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.040146",
+        "StationLongitude": "120.228623"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.038386",
+        "StationLongitude": "120.236700"
+       }
+      ],
+      "StationAltitude": "8.1"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "24.28"
+     }
+    },
+    {
+     "StationName": "臺北",
+     "StationId": "466920",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.039439",
+        "StationLongitude": "121.506628"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.037658",
+        "StationLongitude": "121.514853"
+       }
+      ],
+      "StationAltitude": "6.3"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "22.54"
+     }
+    },
+    {
+     "StationName": "金門",
+     "StationId": "467110",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.408942",
+        "StationLongitude": "118.281127"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.407306",
+        "StationLongitude": "118.289281"
+       }
+      ],
+      "StationAltitude": "47.9"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "19.36"
+     }
+    },
+    {
+     "StationName": "馬祖",
+     "StationId": "467990",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "26.171145",
+        "StationLongitude": "119.914855"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "26.169467",
+        "StationLongitude": "119.923158"
+       }
+      ],
+      "StationAltitude": "97.8"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "20.61"
+     }
+    },
+    {
+     "StationName": "新屋",
+     "StationId": "467050",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.008484",
+        "StationLongitude": "121.039271"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "25.006725",
+        "StationLongitude": "121.047492"
+       }
+      ],
+      "StationAltitude": "20.6"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "19.05"
+     }
+    },
+    {
+     "StationName": "田中",
+     "StationId": "467270",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.875561",
+        "StationLongitude": "120.573149"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.873803",
+        "StationLongitude": "120.581286"
+       }
+      ],
+      "StationAltitude": "48.6"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "23.33"
+     }
+    },
+    {
+     "StationName": "後龍",
+     "StationId": "467280",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.650318",
+        "StationLongitude": "120.823641"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "24.648563",
+        "StationLongitude": "120.831834"
+       }
+      ],
+      "StationAltitude": "30.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "23.00"
+     }
+    },
+    {
+     "StationName": "古坑",
+     "StationId": "467290",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.635401",
+        "StationLongitude": "120.543769"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.633639",
+        "StationLongitude": "120.551889"
+       }
+      ],
+      "StationAltitude": "90.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "24.36"
+     }
+    },
+    {
+     "StationName": "萬大發電廠",
+     "StationId": "42HA10",
+     "ObsTime": {
+      "DateTime": "2025-03-26T20:40:00+08:00"
+     },
+     "GeoInfo": {
+      "Coordinates": [
+       {
+        "CoordinateName": "TWD67",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.980611",
+        "StationLongitude": "121.131497"
+       },
+       {
+        "CoordinateName": "WGS84",
+        "CoordinateFormat": "decimal degrees",
+        "StationLatitude": "23.978875",
+        "StationLongitude": "121.139639"
+       }
+      ],
+      "StationAltitude": "1000.0"
+     },
+     "WeatherElement": {
+      "SolarRadiation": "23.22"
+     }
+    }
+   ]
+  }
+ }
+}

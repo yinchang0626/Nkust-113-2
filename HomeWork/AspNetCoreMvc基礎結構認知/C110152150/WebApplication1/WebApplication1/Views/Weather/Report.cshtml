@@ -1,0 +1,9 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "報表統計";
+}
+<h2>@ViewData["Title"]</h2>
+<p>總筆數: <strong>@Model.Count</strong></p>
+<p>平均日射量: <strong>@Model.AvgSolarRadiation.ToString("F2")</strong></p>
+<a class="btn btn-secondary" asp-action="Index">返回列表</a>
+
