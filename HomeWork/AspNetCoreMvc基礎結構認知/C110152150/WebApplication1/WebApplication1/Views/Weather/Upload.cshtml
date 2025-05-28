@@ -1,4 +1,12 @@
-﻿@page
-@model WebApplication1.Views.Weather.UploadModel
-@{
+﻿@{
+    ViewData["Title"] = "上傳 JSON 檔案";
 }
+<h2>@ViewData["Title"]</h2>
+<form asp-action="Upload" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label>選擇 JSON 檔案</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">上傳並解析</button>
+</form>
+<a class="btn btn-secondary" asp-action="Index">返回列表</a>

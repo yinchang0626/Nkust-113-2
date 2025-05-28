@@ -1,4 +1,30 @@
-﻿@page
-@model WebApplication1.Views.Weather.IndexModel
+﻿@model List<WeatherDataMVC.Models.Station>
 @{
+    ViewData["Title"] = "觀測站列表";
 }
+<h2>@ViewData["Title"]</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>站名</th>
+            <th>站點ID</th>
+            <th>觀測時間</th>
+            <th>動作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.StationName</td>
+                <td>@item.StationId</td>
+                <td>@item.ObsTime?.DateTime</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Details" asp-route-id="@item.StationId">詳細</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Upload">上傳新檔案</a>
+<a class="btn btn-info" asp-action="GenerateReport">產生報表</a>
