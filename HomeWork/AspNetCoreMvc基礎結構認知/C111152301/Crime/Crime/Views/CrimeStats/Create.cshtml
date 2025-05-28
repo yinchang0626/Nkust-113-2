@@ -1,0 +1,23 @@
+﻿@model CrimeStat
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>新增案件</h2>
+<form asp-action="Create">
+    <div><label>年份</label><input asp-for="Year" class="form-control" /></div>
+    <div><label>月份</label><input asp-for="Month" class="form-control" /></div>
+    <div><label>案件數(總計)</label><input asp-for="TotalCases" class="form-control" /></div>
+    <div><label>案件數(強制性交)</label><input asp-for="RapeCases" class="form-control" /></div>
+    <div><label>案件數(搶奪)</label><input asp-for="RobberyCases" class="form-control" /></div>
+    <div><label>案件數(其他)</label><input asp-for="OtherCases" class="form-control" /></div>
+    <div><label>案件發生率(件/十萬人)</label><input asp-for="IncidentRate" class="form-control" /></div>
+    <div><label>嫌疑犯人數</label><input asp-for="Suspects" class="form-control" /></div>
+    <div><label>犯罪人口率(人/十萬人)</label><input asp-for="CrimeRate" class="form-control" /></div>
+    <div><label>破獲件數(總計)</label><input asp-for="SolvedTotal" class="form-control" /></div>
+    <div><label>破獲件數(當期)</label><input asp-for="SolvedCurrent" class="form-control" /></div>
+    <div><label>破獲件數(積案)</label><input asp-for="SolvedBacklog" class="form-control" /></div>
+    <div><label>破獲件數(他轄)</label><input asp-for="SolvedOther" class="form-control" /></div>
+    <div><label>破獲率</label><input asp-for="SolveRate" class="form-control" /></div>
+	<button type="submit" class="btn btn-primary">新增</button>
+	<a class="btn btn-secondary" href="/CrimeStats">返回列表</a>
+</form>
