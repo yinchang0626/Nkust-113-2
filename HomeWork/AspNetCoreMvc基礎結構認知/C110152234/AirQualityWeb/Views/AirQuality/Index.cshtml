@@ -1,0 +1,94 @@
+@model List<AirQualityRecord>
+
+@{
+    var years = new[] { "96年", "97年", "98年", "99年", "100年", "101年", "102年", "103年", "104年", "105年" };
+    var yearLabels = string.Join(",", years.Select(y => $"\"{y}\""));
+}
+
+<h2>空氣品質資料</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>測站</th>
+            <th>項目</th>
+            <th>值</th>
+            @foreach (var year in years)
+            {
+                <th>@year</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            var values = string.Join(",", years.Select(y =>
+            {
+                var prop = typeof(AirQualityRecord).GetProperty("_" + y);
+                var val = prop?.GetValue(record)?.ToString();
+                return double.TryParse(val, out _) ? val : "null";
+            }));
+
+            <tr>
+                <td>@record.測站</td>
+                <td>@record.項目</td>
+                <td>@record.值</td>
+                @foreach (var year in years)
+                {
+                    var prop = typeof(AirQualityRecord).GetProperty("_" + year);
+                    var value = prop?.GetValue(record)?.ToString() ?? "";
+                    <td>@value</td>
+                }
+            </tr>
+            <tr>
+                <td colspan="13">
+                    <canvas class="chart-canvas"
+                            data-label="@record.測站 - @record.項目"
+                            data-value="@record.值"
+                            data-data="@values">
+                    </canvas>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const labels = [@Html.Raw(yearLabels)];
+
+    document.querySelectorAll(".chart-canvas").forEach((canvas, index) => {
+        const label = canvas.dataset.label + " (" + canvas.dataset.value + ")";
+        const data = canvas.dataset.data.split(',').map(v => v === "null" ? null : parseFloat(v));
+
+        const ctx = canvas.getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: label
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    });
+});
+</script>
