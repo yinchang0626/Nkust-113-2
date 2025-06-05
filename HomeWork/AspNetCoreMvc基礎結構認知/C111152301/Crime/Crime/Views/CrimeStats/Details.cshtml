@@ -1,0 +1,21 @@
+﻿@model CrimeStat
+@{
+    ViewData["Title"] = "詳細資料";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@Model.Year 年 @Model.Month 月 詳細資料</h2>
+<table class="table">
+    <tr><th>案件數(總計)</th><td>@Model.TotalCases 件</td></tr>
+    <tr><th>案件數(強制性交)</th><td>@Model.RapeCases 件</td></tr>
+    <tr><th>案件數(搶奪)</th><td>@Model.RobberyCases 件</td></tr>
+    <tr><th>案件數(其他)</th><td>@Model.OtherCases 件</td></tr>
+    <tr><th>發生率</th><td>@Model.IncidentRate 件/十萬人</td></tr>
+    <tr><th>嫌疑犯人數</th><td>@Model.Suspects 人</td></tr>
+    <tr><th>犯罪人口率</th><td>@Model.CrimeRate 人/十萬人</td></tr>
+    <tr><th>破獲件數(總計)</th><td>@Model.SolvedTotal 件</td></tr>
+    <tr><th>破獲件數(當期)</th><td>@Model.SolvedCurrent 件</td></tr>
+    <tr><th>破獲件數(積案)</th><td>@Model.SolvedBacklog 件</td></tr>
+    <tr><th>破獲件數(他轄)</th><td>@Model.SolvedOther 件</td></tr>
+    <tr><th>破獲率</th><td>@Model.SolveRate %</td></tr>
+</table>
+<a class="btn btn-secondary" href="/CrimeStats">返回列表</a>

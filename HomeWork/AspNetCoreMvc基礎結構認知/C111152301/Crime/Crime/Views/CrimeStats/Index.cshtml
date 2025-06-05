@@ -1,0 +1,140 @@
+﻿@model X.PagedList.IPagedList<CrimeStat>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "案件資料清單";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentSortBy = ViewContext.HttpContext.Request.Query["SortBy"].ToString();
+    var currentSortOrder = ViewContext.HttpContext.Request.Query["SortOrder"].ToString();
+}
+
+<h2>案件資料清單</h2>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-2">
+        <select name="year" class="form-select">
+            <option value="">所有年份</option>
+            @foreach (var y in ViewBag.Years as List<int>)
+            {
+                <option value="@y" selected="@(ViewContext.HttpContext.Request.Query["year"] == y.ToString())">@y 年</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="month" class="form-select">
+            <option value="">所有月份</option>
+            @foreach (var m in ViewBag.Months as List<int>)
+            {
+                <option value="@m" selected="@(ViewContext.HttpContext.Request.Query["month"] == m.ToString())">@m 月</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-secondary">搜尋</button>
+    </div>
+    <div class="col-md-2">
+        <select name="SortBy" class="form-select">
+            <option value="">排序欄位</option>
+            <option value="Year" selected="@(currentSortBy == "Year")">年份</option>
+            <option value="Month" selected="@(currentSortBy == "Month")">月份</option>
+            <option value="TotalCases" selected="@(currentSortBy == "TotalCases")">總案件</option>
+            <option value="RapeCases" selected="@(currentSortBy == "RapeCases")">強制性交</option>
+            <option value="RobberyCases" selected="@(currentSortBy == "RobberyCases")">強盜搶奪</option>
+            <option value="OtherCases" selected="@(currentSortBy == "OtherCases")">其他</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="SortOrder" class="form-select">
+            <option value="asc" selected="@(currentSortOrder == "asc")">升冪</option>
+            <option value="desc" selected="@(currentSortOrder == "desc")">降冪</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-secondary">排序</button>
+    </div>
+    <div class="col-md-2">
+        <a asp-action="Index" class="btn btn-secondary">清除條件</a>
+    </div>
+</form>
+@{
+    var year = ViewContext.HttpContext.Request.Query["year"].ToString();
+    var month = ViewContext.HttpContext.Request.Query["month"].ToString();
+    var type = ViewContext.HttpContext.Request.Query["type"].ToString();
+    var filters = new List<string>();
+    if (!string.IsNullOrEmpty(year)) filters.Add($"年份：{year} 年");
+    if (!string.IsNullOrEmpty(month)) filters.Add($"月份：{month} 月");
+    if (!string.IsNullOrEmpty(type))
+    {
+        var label = type == "rape" ? "強制性交" : type == "robbery" ? "強盜搶奪" : "其他";
+        filters.Add($"案件類型：{label}");
+    }
+}
+@if (filters.Any())
+{
+    <div class="alert alert-info">
+        <strong>目前篩選條件：</strong> @string.Join("，", filters)
+    </div>
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>年份</th>
+            <th>月份</th>
+            <th>總案件</th>
+            <th>強制性交</th>
+            <th>強盜搶奪</th>
+            <th>其他</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Year</td>
+                <td>@item.Month</td>
+                <td>@item.TotalCases</td>
+                <td>@item.RapeCases</td>
+                <td>@item.RobberyCases</td>
+                <td>@item.OtherCases</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">詳細</a>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">編輯</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('確定要刪除嗎？');">刪除</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        year = ViewContext.HttpContext.Request.Query["year"],
+        month = ViewContext.HttpContext.Request.Query["month"],
+        type = ViewContext.HttpContext.Request.Query["type"],
+        SortBy = ViewContext.HttpContext.Request.Query["SortBy"],
+        SortOrder = ViewContext.HttpContext.Request.Query["SortOrder"]
+    }), new PagedListRenderOptions
+{
+    LiElementClasses = new[] { "page-item" },
+    PageClasses = new[] { "page-link" },
+    UlElementClasses = new[] { "pagination", "justify-content-center" },
+    DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+    DisplayLinkToLastPage = PagedListDisplayMode.Always,
+    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+    DisplayLinkToIndividualPages = true,
+    MaximumPageNumbersToDisplay = 5
+})
+@* 
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        year = ViewContext.HttpContext.Request.Query["year"],
+        month = ViewContext.HttpContext.Request.Query["month"],
+        sortBy = ViewContext.HttpContext.Request.Query["SortBy"],
+        sortOrder = ViewContext.HttpContext.Request.Query["SortOrder"]
+    })) *@
+

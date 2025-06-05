@@ -1,0 +1,12 @@
+﻿@if (TempData["LoginMessage"] != null)
+{
+    <div class="alert alert-info">@TempData["LoginMessage"]</div>
+}
+@if (TempData["LogoutMessage"] != null)
+{
+    <div class="alert alert-warning">@TempData["LogoutMessage"]</div>
+}
+@if (TempData["AccessDenied"] != null)
+{
+    <div class="alert alert-danger">@TempData["AccessDenied"]</div>
+}
