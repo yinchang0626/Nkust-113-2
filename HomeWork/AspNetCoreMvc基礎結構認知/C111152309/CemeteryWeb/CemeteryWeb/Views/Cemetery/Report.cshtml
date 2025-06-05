@@ -1,0 +1,41 @@
+﻿@model List<Cemetery>
+
+<h2>公墓報表</h2>
+
+<form asp-action="GenerateReport" method="get" class="mb-3">
+    <div class="form-row">
+        <div class="col-md-4">
+            <select name="district" class="form-control" onchange="this.form.submit()">
+                <option value="">全部行政區</option>
+                @foreach (var district in ViewBag.Districts as List<string>)
+                {
+                    <option value="@district" selected="@(ViewBag.SelectedDistrict == district)">@district</option>
+                }
+            </select>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>行政區</th>
+            <th>公墓名稱</th>
+            <th>地址</th>
+            <th>狀態</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.District</td>
+                <td>@item.FacilityName</td>
+                <td>@item.FacilityAddress</td>
+                <td>@item.Recent</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">返回列表</a>
