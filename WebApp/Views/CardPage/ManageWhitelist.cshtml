@@ -1,0 +1,150 @@
+@model WebApp.Controllers.ManageWhitelistViewModel
+
+@{
+    ViewData["Title"] = "管理卡片白名單";
+}
+
+<h1>管理卡片白名單</h1>
+<h3>卡片: @Model.Card.DisplayName (@Model.Card.CardNumber)</h3>
+<h4>持有人: @Model.Card.MemberName</h4>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="ManageWhitelist" method="post">
+            <input type="hidden" name="id" value="@Model.Card.Id" />
+            
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">選擇允許訪問的裝置</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.AllDevices.Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            目前系統中沒有任何裝置。請先新增裝置。
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" id="selectAll" class="form-check-input" />
+                                <label for="selectAll" class="form-check-label fw-bold">全選/取消全選</label>
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width: 5%"></th>
+                                        <th style="width: 30%">裝置名稱</th>
+                                        <th style="width: 25%">裝置代碼</th>
+                                        <th style="width: 25%">IP 地址</th>
+                                        <th style="width: 15%">狀態</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var device in Model.AllDevices)
+                                    {
+                                        bool isSelected = Model.SelectedDeviceIds.Contains(device.Id);
+                                        <tr class="@(isSelected ? "table-success" : "")">
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="selectedDevices" value="@device.Id" class="form-check-input device-checkbox"
+                                                           @(isSelected ? "checked" : "") />
+                                                </div>
+                                            </td>
+                                            <td>@device.DisplayName</td>
+                                            <td>@device.DeviceCode</td>
+                                            <td>@device.IpAddress</td>
+                                            <td>
+                                                @if (isSelected)
+                                                {
+                                                    <span class="badge bg-success">已授權</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary">未授權</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">儲存變更</button>
+                    <a asp-action="Details" asp-route-id="@Model.Card.Id" class="btn btn-secondary">返回卡片詳情</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">已授權裝置</h5>
+            </div>
+            <div class="card-body">
+                @if (!Model.SelectedDeviceIds.Any())
+                {
+                    <div class="alert alert-warning">
+                        此卡片目前沒有授權任何裝置。
+                    </div>
+                }
+                else
+                {
+                    <ul class="list-group">
+                        @foreach (var deviceId in Model.SelectedDeviceIds)
+                        {
+                            var device = Model.AllDevices.FirstOrDefault(d => d.Id == deviceId);
+                            if (device != null)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @device.DisplayName
+                                    <span class="badge bg-primary rounded-pill">@device.DeviceCode</span>
+                                </li>
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // 全選/取消全選功能
+            $("#selectAll").change(function() {
+                $(".device-checkbox").prop('checked', $(this).prop('checked'));
+                
+                // 更新行的背景色
+                if ($(this).prop('checked')) {
+                    $(".device-checkbox").closest('tr').addClass('table-success');
+                } else {
+                    $(".device-checkbox").closest('tr').removeClass('table-success');
+                }
+            });
+            
+            // 點擊單個設備時更新行的背景色
+            $(".device-checkbox").change(function() {
+                if ($(this).prop('checked')) {
+                    $(this).closest('tr').addClass('table-success');
+                } else {
+                    $(this).closest('tr').removeClass('table-success');
+                }
+                
+                // 檢查是否所有複選框都被選中
+                var allChecked = $(".device-checkbox:checked").length === $(".device-checkbox").length;
+                $("#selectAll").prop('checked', allChecked);
+            });
+        });
+    </script>
+}

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
-using WebApp.Services;
+using WebApp.Mappings; // For MappingProfile
+using AutoMapper;     // For MapperConfiguration, IMapper
 
 namespace WebApp
 {
@@ -12,10 +13,23 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IRescueService, RescueService>();
-            //builder.Services.AddScoped<XmlParser>();
+            
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Manually configure and register AutoMapper
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<MappingProfile>();
+                // Add other profiles here if you have them:
+                // cfg.AddProfile<AnotherMappingProfile>();
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
+
+            // Add Swagger services
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -26,17 +40,28 @@ namespace WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            else
+            {
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+                // specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp API v1");
+                    c.RoutePrefix = string.Empty; // Set Swagger UI at apps root
+                });
+            }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles(); // Ensure static files are served.
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

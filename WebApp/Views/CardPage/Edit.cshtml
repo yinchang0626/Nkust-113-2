@@ -1,0 +1,96 @@
+@model WebApp.Models.Dtos.UpdateCardDto
+
+@{
+    ViewData["Title"] = "Edit Card";
+}
+
+<h1>Edit Card</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="card">
+                <div class="card-header">
+                    <h4>Card Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DisplayName" class="control-label"></label>
+                                <input asp-for="DisplayName" class="form-control" />
+                                <span asp-validation-for="DisplayName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="CardNumber" class="control-label"></label>
+                                <input asp-for="CardNumber" class="form-control" />
+                                <span asp-validation-for="CardNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="MemberName" class="control-label"></label>
+                                <input asp-for="MemberName" class="form-control" />
+                                <span asp-validation-for="MemberName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="MemberId" class="control-label"></label>
+                                <input asp-for="MemberId" class="form-control" />
+                                <span asp-validation-for="MemberId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="EnabledFrom" class="control-label"></label>
+                                <input asp-for="EnabledFrom" class="form-control" type="datetime-local" />
+                                <span asp-validation-for="EnabledFrom" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="EnabledTo" class="control-label"></label>
+                                <input asp-for="EnabledTo" class="form-control" type="datetime-local" />
+                                <span asp-validation-for="EnabledTo" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-check mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsDisabled" /> @Html.DisplayNameFor(model => model.IsDisabled)
+                        </label>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Remark" class="control-label"></label>
+                        <textarea asp-for="Remark" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Remark" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

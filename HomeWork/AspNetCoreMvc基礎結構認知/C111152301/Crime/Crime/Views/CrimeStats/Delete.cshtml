@@ -1,0 +1,43 @@
+﻿@model CrimeStat
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>確認刪除</h2>
+<div>
+    <p>是否確定刪除以下資料？</p>
+    <dl class="row">
+        <dt class="col-sm-2">年份</dt>
+        <dd class="col-sm-10">@Model.Year</dd>
+        <dt class="col-sm-2">月份</dt>
+        <dd class="col-sm-10">@Model.Month</dd>
+        <dt class="col-sm-2">案件數(總計)</dt>
+        <dd class="col-sm-10">@Model.TotalCases</dd>
+        <dt class="col-sm-2">案件數(強制性交)</dt>
+        <dd class="col-sm-10">@Model.RapeCases</dd>
+        <dt class="col-sm-2">案件數(搶奪)</dt>
+        <dd class="col-sm-10">@Model.RobberyCases</dd>
+        <dt class="col-sm-2">案件數(其他)</dt>
+        <dd class="col-sm-10">@Model.OtherCases</dd>
+        <dt class="col-sm-2">案件發生率(件/十萬人)</dt>
+        <dd class="col-sm-10">@Model.IncidentRate</dd>
+        <dt class="col-sm-2">嫌疑犯人數</dt>
+        <dd class="col-sm-10">@Model.Suspects</dd>
+        <dt class="col-sm-2">犯罪人口率(人/十萬人)</dt>
+        <dd class="col-sm-10">@Model.CrimeRate</dd>
+        <dt class="col-sm-2">破獲件數(總計)</dt>
+        <dd class="col-sm-10">@Model.SolvedTotal</dd>
+        <dt class="col-sm-2">破獲件數(當期)</dt>
+        <dd class="col-sm-10">@Model.SolvedCurrent</dd>
+        <dt class="col-sm-2">破獲件數(積案)</dt>
+        <dd class="col-sm-10">@Model.SolvedBacklog</dd>
+        <dt class="col-sm-2">破獲件數(他轄)</dt>
+        <dd class="col-sm-10">@Model.SolvedOther</dd>
+        <dt class="col-sm-2">破獲率</dt>
+        <dd class="col-sm-10">@Model.SolveRate</dd>
+    </dl>
+</div>
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">確認刪除</button>
+    <a asp-action="Index" class="btn btn-secondary">取消</a>
+</form>

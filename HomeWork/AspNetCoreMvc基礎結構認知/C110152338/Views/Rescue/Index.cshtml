@@ -1,0 +1,50 @@
+@model IEnumerable<WebApp.Models.RescueData>
+
+@{
+    var months = Model.Select(m => m.Month).ToList();
+    var transported = Model.Select(m => m.Transported).ToList();
+    var notTransported = Model.Select(m => m.NotTransported).ToList();
+}
+
+<h2 class="mt-4 mb-3">Rescue Data Chart</h2>
+
+<canvas id="rescueChart" width="100%" height="40"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('rescueChart').getContext('2d');
+        const rescueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(months)),
+                datasets: [
+                    {
+                        label: 'Transported',
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(transported))
+                    },
+                    {
+                        label: 'Not Transported',
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(notTransported))
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Rescue Transport Statistics'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}

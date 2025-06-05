@@ -1,0 +1,67 @@
+@model WebApp.Models.Dtos.UpdateDeviceDto
+
+@{
+    ViewData["Title"] = "Edit Device";
+}
+
+<h1>Edit Device</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="card">
+                <div class="card-header">
+                    <h4>Device Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DisplayName" class="control-label"></label>
+                                <input asp-for="DisplayName" class="form-control" />
+                                <span asp-validation-for="DisplayName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DeviceCode" class="control-label"></label>
+                                <input asp-for="DeviceCode" class="form-control" />
+                                <span asp-validation-for="DeviceCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="RemoteId" class="control-label"></label>
+                                <input asp-for="RemoteId" class="form-control" />
+                                <span asp-validation-for="RemoteId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="IpAddress" class="control-label"></label>
+                                <input asp-for="IpAddress" class="form-control" />
+                                <span asp-validation-for="IpAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

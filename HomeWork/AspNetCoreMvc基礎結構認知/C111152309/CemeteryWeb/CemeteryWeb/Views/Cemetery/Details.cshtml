@@ -1,0 +1,32 @@
+﻿@model Cemetery
+
+<h2>@Model.FacilityName 詳細資料</h2>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">分類</dt>
+            <dd class="col-sm-9">@Model.FacilityClassification</dd>
+
+            <dt class="col-sm-3">行政區</dt>
+            <dd class="col-sm-9">@Model.District</dd>
+
+            <dt class="col-sm-3">地址</dt>
+            <dd class="col-sm-9">@Model.FacilityAddress</dd>
+
+            <dt class="col-sm-3">狀態</dt>
+            <dd class="col-sm-9">@Model.Recent</dd>
+
+            <dt class="col-sm-3">開放時間</dt>
+            <dd class="col-sm-9">@Model.OpenDay @Model.OpenTime</dd>
+
+            <dt class="col-sm-3">座標</dt>
+            <dd class="col-sm-9">緯度: @Model.Latitude, 經度: @Model.Longitude</dd>
+
+            <dt class="col-sm-3">備註</dt>
+            <dd class="col-sm-9">@Model.Remarks</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">返回列表</a>

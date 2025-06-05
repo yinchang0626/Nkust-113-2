@@ -1,0 +1,82 @@
+@model WebApp.Models.Dtos.CreateDeviceDto
+
+@{
+    ViewData["Title"] = "Create Device";
+}
+
+<h1>Create New Device</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Device Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DisplayName" class="control-label"></label>
+                                <input asp-for="DisplayName" class="form-control" />
+                                <span asp-validation-for="DisplayName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DeviceCode" class="control-label"></label>
+                                <input asp-for="DeviceCode" class="form-control" />
+                                <span asp-validation-for="DeviceCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="RemoteId" class="control-label"></label>
+                                <input asp-for="RemoteId" class="form-control" />
+                                <span asp-validation-for="RemoteId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="IpAddress" class="control-label"></label>
+                                <input asp-for="IpAddress" class="form-control" placeholder="例如：192.168.1.100" />
+                                <span asp-validation-for="IpAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>說明</h5>
+            </div>
+            <div class="card-body">
+                <p>填寫設備資訊以新增一個裝置：</p>
+                <ul>
+                    <li><strong>DisplayName</strong>: 設備顯示名稱，便於識別</li>
+                    <li><strong>DeviceCode</strong>: 設備代碼，通常是序列號或識別碼</li>
+                    <li><strong>RemoteId</strong>: 遠端識別碼</li>
+                    <li><strong>IpAddress</strong>: 設備的IP地址</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "註冊";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>登入</h2>
+<form asp-controller="Account" asp-action="Login">
+    <div class="mb-3">
+        <label>使用者名稱：</label>
+        <input type="text" name="username" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>密碼：</label>
+        <input type="password" name="password"" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">登入</button><br>
+    <a href="/Account/Register">註冊</a><br />
+    <a href="/CrimeStats/Index">回首頁</a>
+@if (ViewBag.Error != null)
+{
+    <p class="text-danger">@ViewBag.Error</p>
+}
+</form>
