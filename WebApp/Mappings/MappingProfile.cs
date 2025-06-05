@@ -23,7 +23,9 @@ namespace WebApp.Mappings
             CreateMap<Device, DeviceBaseDto>(); // For nested DTOs
 
             // CardAccessGrant Mappings
-            CreateMap<CardAccessGrant, CardAccessGrantDto>();
+            CreateMap<CardAccessGrant, CardAccessGrantDto>()
+                .ForMember(dest => dest.Card, opt => opt.MapFrom(src => src.Card))
+                .ForMember(dest => dest.Device, opt => opt.MapFrom(src => src.Device));
             CreateMap<CreateCardAccessGrantDto, CardAccessGrant>();
             CreateMap<UpdateCardAccessGrantDto, CardAccessGrant>();
             CreateMap<CardAccessGrant, CardAccessGrantBaseDto>(); // For nested DTOs in CardDto/DeviceDto

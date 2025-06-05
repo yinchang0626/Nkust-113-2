@@ -20,6 +20,7 @@ namespace WebApp.Models.Dtos
         public Guid Id { get; set; }
         public string DisplayName { get; set; } = string.Empty;
         public string CardNumber { get; set; } = string.Empty;
+        public string MemberName { get; set; } = string.Empty; // Added MemberName
     }
 
     // Base DTO for Device, used in CardAccessGrantDto to avoid circular references

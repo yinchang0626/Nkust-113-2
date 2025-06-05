@@ -16,7 +16,7 @@ namespace WebApp.Models.Dtos
         public DateTime? EnabledFrom { get; set; }
         public DateTime? EnabledTo { get; set; }
         public string Remark { get; set; } = string.Empty;
-        public List<CardAccessGrantBaseDto> AccessGrants { get; set; } = new List<CardAccessGrantBaseDto>();
+        public List<CardAccessGrantDto> AccessGrants { get; set; } = new List<CardAccessGrantDto>();
     }
 
     // DTO for creating a new Card
@@ -46,6 +46,8 @@ namespace WebApp.Models.Dtos
     // DTO for updating an existing Card
     public class UpdateCardDto
     {
+        public Guid Id { get; set; } // Added Id property
+
         [Required]
         [StringLength(128)]
         public string DisplayName { get; set; } = string.Empty;
