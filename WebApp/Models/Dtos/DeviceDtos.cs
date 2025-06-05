@@ -12,7 +12,7 @@ namespace WebApp.Models.Dtos
         public string DeviceCode { get; set; } = string.Empty;
         public string RemoteId { get; set; } = string.Empty;
         public string IpAddress { get; set; } = string.Empty;
-        public List<CardAccessGrantBaseDto> AccessGrants { get; set; } = new List<CardAccessGrantBaseDto>();
+        public List<CardAccessGrantDto> AccessGrants { get; set; } = new List<CardAccessGrantDto>();
     }
 
     // DTO for creating a new Device
@@ -39,6 +39,8 @@ namespace WebApp.Models.Dtos
     // DTO for updating an existing Device
     public class UpdateDeviceDto
     {
+        public Guid Id { get; set; } // Added Id property
+
         [Required]
         [StringLength(128)]
         public string DisplayName { get; set; } = string.Empty;

@@ -4,23 +4,28 @@ using System;
 using System.Threading.Tasks;
 using WebApp.Data;
 using WebApp.Models;
+using WebApp.Models.Dtos;
+using AutoMapper;
 
 namespace WebApp.Controllers
 {
     public class DevicePageController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-        public DevicePageController(AppDbContext context)
+        public DevicePageController(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: DevicePage
         public async Task<IActionResult> Index()
         {
             var devices = await _context.Devices.ToListAsync();
-            return View(devices);
+            var deviceDtos = _mapper.Map<List<DeviceDto>>(devices);
+            return View(deviceDtos);
         }
 
         // GET: DevicePage/Details/5
@@ -40,8 +45,8 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-
-            return View(device);
+            var deviceDto = _mapper.Map<DeviceDto>(device);
+            return View(deviceDto);
         }
 
         // GET: DevicePage/Create
@@ -53,16 +58,17 @@ namespace WebApp.Controllers
         // POST: DevicePage/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DisplayName,DeviceCode,RemoteId,IpAddress")] Device device)
+        public async Task<IActionResult> Create(CreateDeviceDto createDeviceDto)
         {
             if (ModelState.IsValid)
             {
-                device.Id = Guid.NewGuid();
+                var device = _mapper.Map<Device>(createDeviceDto);
+                device.Id = Guid.NewGuid(); // Server generates ID
                 _context.Add(device);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(device);
+            return View(createDeviceDto);
         }
 
         // GET: DevicePage/Edit/5
@@ -78,30 +84,32 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            
-            return View(device);
+            var updateDeviceDto = _mapper.Map<UpdateDeviceDto>(device);
+            return View(updateDeviceDto);
         }
 
         // POST: DevicePage/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,DisplayName,DeviceCode,RemoteId,IpAddress")] Device device)
+        public async Task<IActionResult> Edit(Guid id, UpdateDeviceDto updateDeviceDto)
         {
-            if (id != device.Id)
+            var deviceToUpdate = await _context.Devices.FindAsync(id);
+            if (deviceToUpdate == null)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                _mapper.Map(updateDeviceDto, deviceToUpdate);
                 try
                 {
-                    _context.Update(device);
+                    _context.Update(deviceToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DeviceExists(device.Id))
+                    if (!DeviceExists(id))
                     {
                         return NotFound();
                     }
@@ -112,7 +120,7 @@ namespace WebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(device);
+            return View(updateDeviceDto);
         }
 
         // GET: DevicePage/Delete/5
@@ -129,8 +137,8 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-
-            return View(device);
+            var deviceDto = _mapper.Map<DeviceDto>(device);
+            return View(deviceDto);
         }
 
         // POST: DevicePage/Delete/5
