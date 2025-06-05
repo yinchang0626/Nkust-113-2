@@ -1,0 +1,35 @@
+.course-list-container {
+  padding: 20px;
+}
+
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.course-table th,
+.course-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.course-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.course-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.course-table a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.course-table a:hover {
+  text-decoration: underline;
+}

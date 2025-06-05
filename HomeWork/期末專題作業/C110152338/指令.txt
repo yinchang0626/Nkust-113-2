@@ -1,0 +1,18 @@
+# 一鍵啟動 ASP.NET Core 後端與 Angular 前端指令
+
+# 1. 啟動後端 API（請在專案根目錄執行）
+dotnet run --project Backend/OnlineCoursePlatform.csproj
+
+# 2. 另開一個新終端機視窗，啟動前端 Angular
+cd Frontend
+npm install
+npx ng serve
+
+# 3. 在瀏覽器分別開啟
+# 前端網址：http://localhost:4200/
+# 後端 API 測試：http://localhost:5100/api/courses
+
+# 說明：
+# - 先執行第1步，等後端顯示 Now listening on: http://localhost:5100
+# - 再執行第2步，等前端顯示 Compiled successfully
+# - 兩者都啟動後，前端網頁即可正確串接後端 API 並展示課程列表及詳情。
