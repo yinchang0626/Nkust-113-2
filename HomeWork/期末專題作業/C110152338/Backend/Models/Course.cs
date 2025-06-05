@@ -17,6 +17,9 @@ namespace Backend.Models
 
         public required string Instructor { get; set; }
 
+        public string Classroom { get; set; } = string.Empty;
+        public string Schedule { get; set; } = string.Empty;
+
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; }
 

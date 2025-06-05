@@ -1,4 +1,7 @@
+using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace Backend.Controllers
 {
@@ -6,16 +9,28 @@ namespace Backend.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        [HttpPost("register")]
-        public IActionResult Register()
+        private readonly ApplicationDbContext _context;
+        public UsersController(ApplicationDbContext context)
         {
-            return Ok();
+            _context = context;
         }
 
         [HttpPost("login")]
-        public IActionResult Login()
+        public async Task<IActionResult> Login([FromBody] LoginRequest req)
         {
-            return Ok();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == req.Username);
+            if (user == null)
+                return Unauthorized("User not found");
+            var hash = Convert.ToBase64String(Encoding.UTF8.GetBytes(req.Password));
+            if (user.PasswordHash != hash)
+                return Unauthorized("Wrong password");
+            return Ok(new { user.Username, user.Role, user.IsAdmin });
+        }
+
+        public class LoginRequest
+        {
+            public required string Username { get; set; }
+            public required string Password { get; set; }
         }
     }
 }

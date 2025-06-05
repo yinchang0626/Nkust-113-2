@@ -1,39 +1,41 @@
 # Online Course Platform
 
-This project is a simple online course platform built with ASP.NET Core MVC for the backend and Angular for the frontend.
+This project is an online course platform built with Angular for the frontend and C# .NET for the backend.
+
+## Features
+
+### User Interface (Angular)
+
+*   **Browse Courses:** Displays a list of available courses with basic information.
+*   **View Course Details:** Shows detailed information about a selected course.
+*   **Simulate Course Registration:** Allows users to "register" for a course (no actual payment processing).
+
+### Administrator Interface (ASP.NET MVC Core)
+
+*   **(To be implemented) Administrator Login:** Secure login for administrators.
+*   **(To be implemented) Course Management (CRUD):**
+    *   Create: Add new courses.
+    *   Read: View course lists and details.
+    *   Update: Modify existing course information.
+    *   Delete: Remove courses.
+*   **(To be implemented) View User Registration List:** See which users have registered for which courses.
 
 ## Project Structure
 
-*   `nkust/`: Contains project-related files.
-    *   `database.sql`: SQL script for creating the database schema.
-*   `Backend/`: ASP.NET Core MVC project.
-*   `Frontend/`: Angular project.
+*   `Frontend/`: Contains the Angular frontend application.
+*   `Backend/`: Contains the C# .NET backend application.
+*   `daily/`: Contains project records and progress updates.
+*   `nkust/`: Contains data files and project-related documents.
 
-## Setup Instructions
+## Getting Started
 
-1.  **Create the database:**
-    *   Use the `database.sql` script to create the database.
-2.  **Backend Setup:**
-    *   Navigate to the `Backend/` directory.
-    *   Restore NuGet packages.
-    *   Update the database connection string in `appsettings.json`.
-    *   Run the application.
-3.  **Frontend Setup:**
-    *   Navigate to the `Frontend/` directory.
-    *   Install dependencies using `npm install`.
-    *   Configure the API endpoint in `src/environments/environment.ts`.
-    *   Run the application using `ng serve`.
+1.  Clone the repository.
+2.  Navigate to the `Frontend/` directory and run `npm install` to install dependencies.
+3.  Navigate to the `Backend/` directory and restore the NuGet packages.
+4.  Run the backend and frontend applications.
 
-## Completed Features
+## Current Status
 
-*   Course listing and details.
-*   (Simulated) Course enrollment.
-*   Admin panel for course management (CRUD).
+The project is currently in development. The user interface for browsing courses, viewing course details, and simulating course registration has been implemented. The administrator interface and backend functionality are yet to be implemented.
 
-## Future Enhancements
-
-*   User authentication and authorization.
-*   Frontend form validation.
-*   Backend API input validation.
-*   Course search/filtering.
-*   Image upload for course covers.
+See `daily/readme.md` for detailed progress and project records.

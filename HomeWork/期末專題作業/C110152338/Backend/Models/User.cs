@@ -18,5 +18,7 @@ namespace Backend.Models
         public required string Email { get; set; }
 
         public string Role { get; set; } = "User";
+
+        public bool IsAdmin { get; set; } = false;
     }
 }

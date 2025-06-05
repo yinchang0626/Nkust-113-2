@@ -11,6 +11,6 @@ namespace Backend.Models
 
         public required DbSet<Course> Courses { get; set; }
         public required DbSet<Enrollment> Enrollments { get; set; }
-        public required DbSet<User> Users { get; set; }
+        public new DbSet<User> Users { get; set; }
     }
 }
