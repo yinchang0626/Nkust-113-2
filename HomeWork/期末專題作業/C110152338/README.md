@@ -11,12 +11,13 @@
 ---
 
 ## 使用心得
-自從有了 AI 工具，我們稱 VSCode + AI 為「VSCode vibe」，但距離真正的 100% 自動化還是有些距離。不過有 AI 的幫助，開發效率提升很多，就像這部影片所說的：
-https://www.youtube.com/shorts/1_rSrkXovOk
+自從有了 AI 工具，我們都戲稱 VSCode + AI 是「VSCode vibe」。雖然距離 100% 全自動化還有一段距離，但 AI 的協助確實大幅提升了開發效率。正如這部影片所說：https://www.youtube.com/shorts/1_rSrkXovOk
 
-這次使用的工具有 VSCode Copilot（GPT-4.1）、ROO CODE、Google Gemini 2.0 exp。前前後後花了 30~40 小時，大約 10 小時設計，20~30 小時都在除錯。AI 幫忙真的很方便，但有時候還是會花很多時間在修 bug。
+這次專題主要使用了 VSCode Copilot（GPT-4.1）、ROO CODE，以及 Google Gemini 2.0 exp 等 AI 工具。整個開發過程大約花了 30~40 小時，其中約 10 小時用於系統設計，剩下 20~30 小時則多半投入在除錯與細節調整。AI 幫忙真的很方便，能快速產生程式碼、解決常見問題，但有時候遇到 bug 或特殊需求，還是需要花不少時間手動修正與理解。
+
 
 AI enthusiasts are creating cobbled together apps using ai programming tools and they have little to no knowledge of actual coding. And they are doing it off of “vibes”。
+
 
 ---
 
@@ -94,13 +95,3 @@ AI enthusiasts are creating cobbled together apps using ai programming tools and
 - 課程搜尋/篩選、圖片上傳
 - 單元測試、自動化部署
 - 管理員後台更多功能
-
----
-
-## 其他
-- 專案已用 Git 進行版本控制
-- 詳細進度與紀錄請見 `daily/readme.md`
-
----
-
-祝您專案順利！
