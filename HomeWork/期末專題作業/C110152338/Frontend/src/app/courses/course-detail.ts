@@ -18,13 +18,17 @@ export class CourseDetail implements OnInit {
   constructor(private route: ActivatedRoute, private courseService: CourseService) {}
 
   ngOnInit(): void {
-    const courseName = this.route.snapshot.paramMap.get('id');
-    this.courseService.getCourses().subscribe(
-      (data: Course[]) => {
-        this.course = data.find(course => course.courseName === courseName);
-      },
-      (error) => console.error('Error fetching course:', error)
-    );
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.courseService.getCourses().subscribe(
+        (data: Course[]) => {
+          this.course = data.find(course => String(course.courseId) === String(id)); // 兩邊都轉字串
+        },
+        (error) => console.error('Error fetching course:', error)
+      );
+    } else {
+      console.error('Course ID is null');
+    }
   }
 
   registerCourse(): void {

@@ -59,6 +59,8 @@ namespace OnlineCoursePlatform.Migrations
                     CourseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Instructor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Classroom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Schedule = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -76,7 +78,8 @@ namespace OnlineCoursePlatform.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

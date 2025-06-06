@@ -1,0 +1,27 @@
+<div class="course-schedule-container">
+  <h1>我的選課時程表</h1>
+  <table class="course-schedule-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th *ngFor="let day of days">{{ day }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let period of periods; let i = index">
+        <th [innerHTML]="period.label.replace('\\n', '<br>')"></th>
+        <td *ngFor="let day of days; let j = index">
+          <ng-container *ngIf="timetable[i][j] as course">
+            <div *ngIf="course">
+              <div class="course-cell">
+                <div class="course-name">{{ course.courseName }}</div>
+                <div class="course-instructor">{{ course.instructor }}</div>
+                <div class="course-classroom">{{ course.classroom }}</div>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

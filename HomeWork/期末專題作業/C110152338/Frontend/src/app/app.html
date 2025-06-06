@@ -1,3 +1,14 @@
+<header class="header-bar">
+  <span class="logo">CourseSelectionSystem</span>
+  <nav class="nav-links">
+    <a routerLink="/courses" routerLinkActive="active">課程列表</a>
+    <a routerLink="/course-selection" routerLinkActive="active">我的選課清單</a>
+    <a routerLink="/course-schedule" routerLinkActive="active">我的選課時程表</a>
+    <a routerLink="/reset-password" routerLinkActive="active">變更密碼</a>
+    <a *ngIf="!username" routerLink="/login" routerLinkActive="active" class="nav-links">登入</a>
+    <a *ngIf="username" (click)="logout()" class="nav-links" style="cursor: pointer;">登出 ({{username}})</a>
+  </nav>
+</header>
 <main class="main">
   <router-outlet></router-outlet>
 </main>

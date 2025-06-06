@@ -1,0 +1,48 @@
+.course-schedule-container {
+  padding: 20px;
+}
+
+.course-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.course-schedule-table th,
+.course-schedule-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  height: 70px;
+  min-height: 70px;
+  max-height: 70px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.course-schedule-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.course-cell {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 6px 4px;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  width: 95%;
+  height: 58px;
+  display: block;
+  overflow: hidden;
+}
+
+.course-name {
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.course-instructor, .course-classroom {
+  font-size: 12px;
+  color: #333;
+}
