@@ -1,0 +1,14 @@
+<ng-container *ngIf="course">
+  <h2>{{ course.courseName }}</h2>
+  <p><strong>講師：</strong> {{ course.instructor }}</p>
+  <p><strong>價格：</strong> {{ course.price | currency:'TWD' }}</p>
+  <p><strong>開課日期：</strong> {{ course.startDate | date:'yyyy/MM/dd' }}</p>
+  <p><strong>教室：</strong> {{ course.classroom }}</p>
+  <p><strong>時間：</strong> {{ course.schedule }}</p>
+  <p><strong>描述：</strong> {{ course.description }}</p>
+  <button (click)="registerCourse()">模擬註冊</button>
+  <p><a routerLink="/courses">← 返回課程列表</a></p>
+</ng-container>
+<ng-container *ngIf="!course">
+  <p>找不到課程資料。</p>
+</ng-container>

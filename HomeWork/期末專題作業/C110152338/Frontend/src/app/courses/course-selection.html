@@ -1,0 +1,35 @@
+<!-- 我的選課清單頁面 -->
+<div class="course-list-card">
+  <div class="course-list-header">
+    <span class="icon">📝</span>
+    <span class="title">我的選課清單</span>
+  </div>
+  <table class="course-table">
+    <thead>
+      <tr>
+        <th>科目名稱</th>
+        <th>授課老師</th>
+        <th>教室</th>
+        <th>上課時間</th>
+        <th>移除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of selectedCourses">
+        <td>{{ course.courseName }}</td>
+        <td>{{ course.instructor }}</td>
+        <td>{{ course.classroom }}</td>
+        <td>{{ course.schedule }}</td>
+        <td><button class="course-button btn-red" (click)="removeFromSelection(course.courseId)">移除</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="selectedCourses.length === 0">
+    <ng-container *ngIf="isLoggedIn(); else notLogin">
+      <div class="empty-tip">尚未選課</div>
+    </ng-container>
+    <ng-template #notLogin>
+      <div class="empty-tip">請先登入才能查看選課清單</div>
+    </ng-template>
+  </div>
+</div>

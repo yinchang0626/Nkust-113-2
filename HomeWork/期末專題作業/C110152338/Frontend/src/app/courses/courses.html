@@ -1,0 +1,42 @@
+<div>
+</div>
+
+<div class="course-list-card">
+  <div class="course-list-header">
+    <span class="icon">📋</span>
+    <span class="title">課程列表</span>
+    <span class="user-info" *ngIf="username">｜登入者：{{username}}</span>
+  </div>
+  <table class="course-table">
+    <thead>
+      <tr>
+        <th>科目名稱</th>
+        <th>授課老師</th>
+        <th>教室</th>
+        <th>上課時間</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.courseName }}</td>
+        <td>{{ course.instructor }}</td>
+        <td>{{ course.classroom }}</td>
+        <td>{{ course.schedule }}</td>
+        <td>
+          <ng-container *ngIf="username; else notLoggedIn">
+            <button 
+              class="course-button" 
+              [ngClass]="isEnrolled(course) ? 'btn-red' : 'btn-green'" 
+              (click)="isEnrolled(course) ? unenrollCourse(course) : enrollCourse(course)">
+              {{ isEnrolled(course) ? '已加入' : '加入選課' }}
+            </button>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <span class="login-warning">請先登入以選課</span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
