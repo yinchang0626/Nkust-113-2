@@ -1,0 +1,51 @@
+﻿@model List<CameraRecord.Models.Record>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="mb-3">測速照相列表</h2>
+    <a class="btn btn-success" asp-action="GenerateReport">產生報表</a>
+    <a class="btn btn-secondary" asp-action="Upload">上傳 CSV</a>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">目前沒有資料。</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>編號</th>
+                    <th>型式</th>
+                    <th>測照地點</th>
+                    <th>測照方向</th>
+                    <th>速限</th>
+                    <th>行政區</th>
+                    <th>測照型式</th>
+                    <th>緯度</th>
+                    <th>經度</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.編號</td>
+                        <td>@item.型式</td>
+                        <td>@item.測照地點</td>
+                        <td>@item.測照方向</td>
+                        <td>@item.速限</td>
+                        <td>@item.行政區</td>
+                        <td>@item.測照型式</td>
+                        <td>@item.座標緯度</td>
+                        <td>@item.座標經度</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.編號">詳細資料</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

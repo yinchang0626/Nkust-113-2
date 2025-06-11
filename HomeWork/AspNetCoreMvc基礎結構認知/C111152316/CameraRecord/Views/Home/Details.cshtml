@@ -1,0 +1,17 @@
+﻿@model CameraRecord.Models.Record
+
+<div class="container mt-4">
+    <h3>詳細資料</h3>
+    <table class="table">
+        <tr><th>編號</th><td>@Model.編號</td></tr>
+        <tr><th>型式</th><td>@Model.型式</td></tr>
+        <tr><th>測照地點</th><td>@Model.測照地點</td></tr>
+        <tr><th>測照方向</th><td>@Model.測照方向</td></tr>
+        <tr><th>速限</th><td>@Model.速限</td></tr>
+        <tr><th>行政區</th><td>@Model.行政區</td></tr>
+        <tr><th>測照型式</th><td>@Model.測照型式</td></tr>
+        <tr><th>座標緯度</th><td>@Model.座標緯度</td></tr>
+        <tr><th>座標經度</th><td>@Model.座標經度</td></tr>
+    </table>
+    <a class="btn btn-secondary" asp-action="Index">返回列表</a>
+</div>

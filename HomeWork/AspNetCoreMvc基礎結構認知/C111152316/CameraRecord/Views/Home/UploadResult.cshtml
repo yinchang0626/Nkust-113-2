@@ -1,0 +1,43 @@
+﻿@model List<CameraRecord.Models.Record>
+
+<h2>上傳解析結果</h2>
+
+@if (!Model.Any())
+{
+    <p>沒有解析到任何資料。</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>編號</th>
+                <th>型式</th>
+                <th>測照地點</th>
+                <th>測照方向</th>
+                <th>速限</th>
+                <th>行政區</th>
+                <th>測照型式</th>
+                <th>座標緯度</th>
+                <th>座標經度</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.編號</td>
+                    <td>@item.型式</td>
+                    <td>@item.測照地點</td>
+                    <td>@item.測照方向</td>
+                    <td>@item.速限</td>
+                    <td>@item.行政區</td>
+                    <td>@item.測照型式</td>
+                    <td>@item.座標緯度</td>
+                    <td>@item.座標經度</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a href="@Url.Action("Index", "Home")" class="btn btn-secondary">返回主頁</a>
