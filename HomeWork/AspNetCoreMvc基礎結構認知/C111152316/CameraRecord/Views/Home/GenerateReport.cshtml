@@ -1,0 +1,20 @@
+﻿@model List<CameraRecord.Models.DistrictReportViewModel>
+
+<h2>行政區測速照相統計</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>行政區</th>
+            <th>測速照相數量</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.行政區</td>
+                <td>@item.總數量</td>
+            </tr>
+        }
+    </tbody>
+</table>
