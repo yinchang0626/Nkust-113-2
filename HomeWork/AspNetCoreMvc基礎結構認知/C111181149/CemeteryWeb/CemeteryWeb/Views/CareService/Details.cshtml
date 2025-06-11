@@ -1,0 +1,20 @@
+@model CemeteryWeb.Models.CareService
+
+<h2>@Model.FacilityName 詳細資料</h2>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">單位名稱</dt>
+            <dd class="col-sm-9">@Model.FacilityName</dd>
+
+            <dt class="col-sm-3">服務區域</dt>
+            <dd class="col-sm-9">@Model.ServiceArea</dd>
+
+            <dt class="col-sm-3">連絡電話</dt>
+            <dd class="col-sm-9">@Model.ContactPhone</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">返回列表</a>
