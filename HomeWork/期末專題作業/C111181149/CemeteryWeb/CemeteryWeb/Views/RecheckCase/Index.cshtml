@@ -1,0 +1,35 @@
+@model List<CemeteryWeb.Models.RecheckCase>
+
+<h2>臺北市役男申請複檢案件統計</h2>
+
+<div class="mb-3">
+    <a asp-action="Upload" class="btn btn-primary">上傳資料</a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>年</th>
+            <th>月</th>
+            <th>複檢醫院</th>
+            <th>公費人數</th>
+            <th>自費人數</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Year</td>
+                <td>@item.Month</td>
+                <td>@item.Hospital</td>
+                <td>@item.PublicCount</td>
+                <td>@item.PrivateCount</td>
+                <td>
+                    <a asp-action="Details" asp-route-year="@item.Year" asp-route-month="@item.Month" asp-route-hospital="@item.Hospital" class="btn btn-sm btn-info">詳細資料</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
