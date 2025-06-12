@@ -1,0 +1,81 @@
+@model List<CourseSelectionSystem.Models.Enrollment>
+@{
+    ViewData["Title"] = "我的選課清單";
+    int totalCredits = 0;
+}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="bi bi-list-check"></i> 我的選課清單</h2>
+        </div>
+        <div class="card-body">
+            @if (Model.Count == 0)
+            {
+                <div class="alert alert-info">尚未選課</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>課程代號</th>
+                            <th>課程名稱</th>
+                            <th>授課老師</th>
+                            <th>上課時間</th>
+                            <th>教室</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var course = Model[i].Course;
+                        string courseId = course?.CourseId.ToString() ?? "";
+                        string courseName = course?.CourseName ?? "";
+                        string teacher = "";
+                        // 從 Description 解析上課時間與教室
+                        string time = "";
+                        string classroom = "";
+                        if (!string.IsNullOrEmpty(course?.Description))
+                        {
+                            var desc = course.Description.Split('|');
+                            if (desc.Length >= 8)
+                            {
+                                teacher = desc[7].Trim();
+                            }
+                            if (desc.Length >= 12)
+                            {
+                                classroom = desc[8].Trim();
+                                time = desc[11].Trim();
+                            }
+                        }
+                    <tr>
+                        <td class="text-primary">@courseId</td>
+                        <td>@courseName</td>
+                        <td>@teacher</td>
+                        <td>@time</td>
+                        <td>@classroom</td>
+                        <td>
+                            <form method="post" action="/Enrollment/Remove" style="display:inline">
+                                <input type="hidden" name="id" value="@Model[i].CourseId" />
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> 刪除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+                </div>
+            }
+            <a href="/Courses" class="btn btn-outline-primary mt-3"><i class="bi bi-arrow-left"></i> 回課程列表</a>
+            <a href="/Enrollment/Timetable" class="btn btn-outline-success mt-3"><i class="bi bi-calendar-week"></i> 我的課表</a>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+    .table th, .table td { vertical-align: middle; }
+    .card { border-radius: 1rem; }
+    .btn[disabled] { pointer-events: none; opacity: 0.5; }
+</style>
