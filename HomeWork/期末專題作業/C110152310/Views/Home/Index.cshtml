@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = "首頁";
+}
+<div class="container text-center mt-5">
+    <h1 class="display-4">歡迎來到選課系統</h1>
+    <p class="lead">
+        <a asp-controller="Login" asp-action="Index">請先登入，開始選課！</a>
+    </p>
+    <a class="btn btn-primary btn-lg mt-3" asp-controller="Courses" asp-action="Index">進入課程列表</a>
+</div>
