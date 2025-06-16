@@ -1,5 +1,7 @@
 # ASP.NET Core MVC 選課系統
-
+## 結果
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/%E6%9C%9F%E6%9C%AB%E5%B0%88%E9%A1%8C%E4%BD%9C%E6%A5%AD/C110152310/png/%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2.png)
+![png](https://github.com/kerong2002/Nkust-113-2/blob/master/HomeWork/%E6%9C%9F%E6%9C%AB%E5%B0%88%E9%A1%8C%E4%BD%9C%E6%A5%AD/C110152310/png/%E8%AA%B2%E7%A8%8B%E8%A1%A8.png)
 ## 專案目標
 
 建立一個大學選課系統，包含學生登入、課程管理、選課功能，以及管理後台。
