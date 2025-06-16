@@ -1,0 +1,17 @@
+@model C110152310.Models.Course
+@{
+    ViewData["Title"] = "刪除課程";
+}
+<div class="container mt-4">
+    <h2 class="mb-4">刪除課程</h2>
+    <div class="alert alert-warning">
+        <h4>您確定要刪除這個課程嗎？</h4>
+        <p><strong>@Model.Name</strong></p>
+        <p>@Model.Description</p>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">刪除</button>
+        <a asp-action="Index" class="btn btn-secondary">取消</a>
+    </form>
+</div>

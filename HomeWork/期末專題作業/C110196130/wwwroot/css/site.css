@@ -1,0 +1,51 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: white !important;
+  margin: 0 1rem;
+}
+
+.nav-link:hover {
+  color: var(--light-color) !important;
+}
+
+.container {
+  max-width: 1600px; /* Increased from 1200px */
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.footer {
+  background-color: var(--dark-color);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

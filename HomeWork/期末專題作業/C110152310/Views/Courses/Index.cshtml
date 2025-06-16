@@ -1,0 +1,29 @@
+@model IEnumerable<C110152310.Models.Course>
+@{
+    ViewData["Title"] = "課程列表";
+}
+<div class="container mt-4">
+    <h2 class="mb-4">課程列表</h2>
+    <a class="btn btn-success mb-3" asp-action="MyCourses">我的課程</a>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>課程名稱</th>
+                <th>描述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Select" asp-route-id="@item.Id">選課</a>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">詳細</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

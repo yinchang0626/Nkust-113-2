@@ -1,0 +1,15 @@
+@model C110152310.Models.Course
+@{
+    ViewData["Title"] = "課程詳細";
+}
+<div class="container mt-4">
+    <h2 class="mb-4">課程詳細</h2>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@Model.Name</h4>
+            <p class="card-text">@Model.Description</p>
+            <a class="btn btn-primary" asp-action="Select" asp-route-id="@Model.Id">選課</a>
+            <a class="btn btn-secondary" asp-action="Index">回課程列表</a>
+        </div>
+    </div>
+</div>
