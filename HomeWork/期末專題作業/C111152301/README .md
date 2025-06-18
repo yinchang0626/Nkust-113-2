@@ -97,7 +97,7 @@
 - 帳號管理權限頁面
 ![帳號管理權限頁面](image-8.png)
 
-## ⚙️ 詳細的執行步驟
+## 詳細的執行步驟
 
 1. 安裝 [.NET 9 SDK](https://dotnet.microsoft.com/)
 2. 還原套件：
@@ -109,10 +109,12 @@
 
     ```bash
     dotnet ef database update
+    ```
     - 使用 SQL 指令檔建立：
-
+    
     ```bash
     sqlite3 crime.db < CrimeStatsSchema.sql
+    ```
 4. 執行專案：
 
     ```bash
@@ -144,3 +146,10 @@
 | Razor 找不到 `Request` | 改用 `ViewContext.HttpContext.Request.Query[...]` |
 | Chart 畫面出現 null 錯誤 | 加入 `?? new List<T>()` 預設值避免空值 |
 | 未註冊 `IHttpContextAccessor` | 在 `Program.cs` 加上 `AddHttpContextAccessor()` |
+
+## 未來擴充與改進方向
+
+- 使用 ASP.NET Identity 替代自訂帳號系統
+- 支援匯出報表為 Excel 或 PDF
+- 以 D3.js 或 Highcharts 建立更複雜圖表
+- 將查詢條件改為 Session 或 URL 編碼參數
