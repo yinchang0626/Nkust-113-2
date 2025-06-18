@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UserAccount>
+@{
+    ViewData["Title"] = "使用者管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>使用者管理</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr><th>帳號</th><th>角色</th><th>操作</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Role</td>
+                <td>
+                    @if (user.Role == "User")
+                    {
+                        <a class="btn btn-sm btn-success" href="/Account/Promote/@user.Id">升為管理員</a>
+                    }
+                    else if (user.Role == "Admin")
+                    {
+                        <a class="btn btn-sm btn-warning" href="/Account/Demote/@user.Id">降為使用者</a>
+                    }
+                    @if (User.Identity.Name != user.Username)
+                    {
+                        <a class="btn btn-sm btn-danger" href="/Account/Delete/@user.Id" onclick="return confirm('確認刪除？')">刪除</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-secondary" href="/CrimeStats">返回列表</a>

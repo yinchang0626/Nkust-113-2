@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "匯入 CSV";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>匯入 CSV</h2>
+
+<form asp-action="Index" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">匯入</button>
+    <a class="btn btn-secondary" href="/CrimeStats">返回列表</a>
+</form>
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success mt-3">@ViewBag.Message</div>
+}

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "註冊";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>註冊</h2>
+<form asp-action="Register" method="post">
+    <div class="mb-3">
+        <label>帳號：</label>
+        <input name="username" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>密碼：</label>
+        <input type="password" name="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">註冊</button>
+</form>
+<a href="/Account/Login">登入</a><br>
+<a href="/CrimeStats/Index">回首頁</a>

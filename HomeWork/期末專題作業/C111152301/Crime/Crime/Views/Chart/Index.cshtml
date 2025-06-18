@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "案件趨勢圖";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var labels = ViewBag.Labels as List<string> ?? new List<string>();
+    var total = ViewBag.Total as List<int> ?? new List<int>();
+    var rape = ViewBag.Rape as List<int> ?? new List<int>();
+    var rob = ViewBag.Robbery as List<int> ?? new List<int>();
+    var other = ViewBag.Other as List<int> ?? new List<int>();
+}
+
+<h2>案件趨勢圖</h2>
+<canvas id="crimeChart" width="800" height="400"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<<script>
+     const ctx = document.getElementById('crimeChart');
+     new Chart(ctx, {
+         type: 'line',
+         data: {
+             labels: @Html.Raw(Json.Serialize(labels)),
+             datasets: [
+                 {
+                     label: '總案件數',
+                     data: @Html.Raw(Json.Serialize(total)),
+                     borderColor: 'blue',
+                     fill: false
+                 },
+                 {
+                     label: '強制性交',
+                     data: @Html.Raw(Json.Serialize(rape)),
+                     borderColor: 'red',
+                     fill: false
+                 },
+                 {
+                     label: '強盜搶奪',
+                     data: @Html.Raw(Json.Serialize(rob)),
+                     borderColor: 'green',
+                     fill: false
+                 },
+                 {
+                     label: '其他',
+                     data: @Html.Raw(Json.Serialize(other)),
+                     borderColor: 'orange',
+                     fill: false
+                 }
+             ]
+         },
+         options: {
+             responsive: true,
+             scales: {
+                 y: {
+                     beginAtZero: true
+                 }
+             }
+         }
+     });
+</script>
+<a class="btn btn-secondary" href="/CrimeStats">返回列表</a>
