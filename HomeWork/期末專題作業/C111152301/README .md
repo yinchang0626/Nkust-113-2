@@ -1,4 +1,14 @@
 # 臺北市暴力犯罪案件資料管理系統
+
+## 專案整體架構說明
+
+- **Controllers/**：處理網頁請求與導向邏輯（CRUD、報表等）
+- **Models/**：資料模型類別（CrimeStat、UserAccount）
+- **Views/**：Razor 頁面，搭配 Bootstrap 呈現表單、清單與圖表
+- **Data/**：資料庫上下文 `ApplicationDbContext.cs`，使用 SQLite
+- **Services/**：包含 CsvService，負責匯入與轉換資料格式
+- **Migrations/**：Entity Framework 自動建立的資料表版本紀錄
+
 ## 資料集
 
 - 臺北市暴力犯罪案件按月別
@@ -87,13 +97,50 @@
 - 帳號管理權限頁面
 ![帳號管理權限頁面](image-8.png)
 
+## ⚙️ 詳細的執行步驟
+
+1. 安裝 [.NET 9 SDK](https://dotnet.microsoft.com/)
+2. 還原套件：
+   ```bash
+   dotnet restore
+3. 建立資料庫（任選一種）：
+
+    - 使用 EF Core 指令：
+
+    ```bash
+    dotnet ef database update
+    - 使用 SQL 指令檔建立：
+
+    ```bash
+    sqlite3 crime.db < CrimeStatsSchema.sql
+4. 執行專案：
+
+    ```bash
+    dotnet run
+5. 瀏覽 https://localhost:xxxx/ 使用網頁功能
+
+## 已完成功能對照需求
+
+| 功能項目 | 狀態 |
+|----------|------|
+| 匯入犯罪統計 CSV 檔案 | ✔ |
+| 顯示資料清單並可搜尋、篩選、排序 | ✔ |
+| 支援年＋月＋類型條件查詢與保留 | ✔ |
+| 資料詳細頁面顯示完整欄位 | ✔ |
+| 分頁顯示資料（每頁 10 筆） | ✔ |
+| Chart.js 趨勢圖表 | ✔ |
+| 登入系統：訪客／使用者／管理員 | ✔ |
+| 匯入需登入、刪除需管理員權限 | ✔ |
+
 ## 遇到的問題與解法：
 
 | 問題 | 解決方式 |
 |------|-----------|
+|SQLite 找不到 Table／Migration 問題 | 明確執行 `dotnet ef migrations add` |
+| CSV 中文欄位無法對應模型欄位 | 使用 CsvHelper 並設置 Header 對應 |
 | CsvHelper 匯入欄位不符合模型 | 加入欄位對應中文 Header 與型別轉換處理 |
 | Razor 無法在 `<option>` 中寫 C# | 改寫成先宣告變數，再使用 `selected="..."` 屬性 |
+| `Request.Query` 無法使用 | 改用 `ViewContext.HttpContext.Request` |
 | Razor 找不到 `Request` | 改用 `ViewContext.HttpContext.Request.Query[...]` |
 | Chart 畫面出現 null 錯誤 | 加入 `?? new List<T>()` 預設值避免空值 |
 | 未註冊 `IHttpContextAccessor` | 在 `Program.cs` 加上 `AddHttpContextAccessor()` |
-
