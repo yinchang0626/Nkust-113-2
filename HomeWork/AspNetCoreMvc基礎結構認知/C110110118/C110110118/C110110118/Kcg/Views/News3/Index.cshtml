@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<System.IO.FileInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>單一檔案上傳</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 150px;
+            background-color: beige;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            float: left;
+        }
+
+        img{
+            width: 200px;
+            height: 150px;
+        }
+    </style>
+
+</head>
+<body>
+        
+        <form method="post" action="@Url.Action("Index")"
+            enctype="multipart/form-data">
+            <p>請選擇上傳檔案</p>
+            <p><input type="file" name="formFile" /></p>
+            <p><input type="submit" value="檔案上傳"></p>
+
+        </form>
+
+        <hr />
+    @foreach(var item in Model)
+    {
+        var fileName = item.Name;
+        <div style="margin-bottom: 20px;">
+            <img src="@Url.Content($"~/images/{fileName}")" alt="@fileName" style="max-width: 300px;" />
+            <p>@fileName</p>
+        </div>
+    }
+
+</body>
+</html>
