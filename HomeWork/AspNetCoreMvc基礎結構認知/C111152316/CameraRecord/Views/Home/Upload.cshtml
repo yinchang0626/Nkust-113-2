@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "上傳 CSV 檔案";
+}
+
+<h2>上傳 CSV 檔案</h2>
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="file" class="form-label">選擇檔案</label>
+        <input type="file" name="file" id="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">上傳並解析</button>
+</form>
+
+<a class="btn btn-secondary mt-3" href="@Url.Action("Index")">返回列表</a>
