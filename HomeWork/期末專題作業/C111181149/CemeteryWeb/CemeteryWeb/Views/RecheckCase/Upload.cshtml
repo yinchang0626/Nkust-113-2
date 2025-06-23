@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "上傳役男複檢案件統計資料";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">選擇 CSV 檔案:</label>
+                <input type="file" name="file" class="form-control-file" accept=".csv" required />
+                <small class="form-text text-muted">請選擇符合格式的 CSV 檔案</small>
+            </div>
+            <button type="submit" class="btn btn-primary">上傳</button>
+            <a asp-action="Index" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+</div>

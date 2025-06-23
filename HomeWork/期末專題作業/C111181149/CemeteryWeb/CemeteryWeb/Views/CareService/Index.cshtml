@@ -1,0 +1,31 @@
+@model List<CemeteryWeb.Models.CareService>
+
+<h2>桃園市長照服務單位列表</h2>
+
+<div class="mb-3">
+    <a asp-action="Upload" class="btn btn-primary">上傳資料</a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>單位名稱</th>
+            <th>服務區域</th>
+            <th>連絡電話</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FacilityName</td>
+                <td>@item.ServiceArea</td>
+                <td>@item.ContactPhone</td>
+                <td>
+                    <a asp-action="Details" asp-route-name="@item.FacilityName" class="btn btn-sm btn-info">詳細資料</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
